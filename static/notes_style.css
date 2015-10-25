@@ -1,0 +1,211 @@
+/*-- This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+
+Here goes my CSS for html notes in separate file.
+
+Palette:
+pale yellow  : #cbca70 / rgb(203,202,112)
+dark blue    : #23324c / rgb(35,50,76)
+light blue   : #9aadcb / rgb(154,173,203)
+pale blue    : #3a547f / rgb(58,84,127)
+code pale    : #4b658f / rgb(75,101,143)
+code light   : #eae981 / rgb(234,233,129)
+code border  : #6d87af / rgb(109,135,175)
+tomato       : #ff6347 / rgb(255,99,71)
+firebrick    : #b22222 / rgb(178,34,34)
+dimgrey      : #696969 / rgb(105,105,105)
+green stitch : #60a68e / rgb(96,166,142)
+*/
+
+* {
+	box-sizing: border-box;
+	margin: 0 auto; /* Centers display on page, great for responsive design */
+}
+
+body {
+	background-image: url('seamless-pattern-background.jpg');
+	font-family: 'Rajdhani', sans-serif;
+	max-width: 750px;
+}
+
+p {
+	margin: 6px 0 6px 0;
+}
+
+.lesson {
+	color: #cbca70;
+	background-color: rgba(35,50,76,.9);
+	padding: 10px;
+	border-radius: 8px;
+	border: solid 3px;
+	border-style: dashed;
+	border-color: rgba(96,166,142,.8);
+	margin: 8px 0 8px 0;
+}
+
+.concept {
+	background-color: rgba(58,84,127,.7);
+	padding: 4px;
+	margin: 10px;
+	border-radius: 4px;
+	border: solid 2px;
+	border-style: dashed;
+	border-color: rgba(96,166,142,.3);
+	text-align: justify;
+}
+
+.concept-description {
+	margin: 6px;
+}
+
+.addmargin {
+	padding: 10px;
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
+.toplink {
+	float: left;
+}
+.commentlink {
+	float: right;
+}
+
+.thumbnail {
+	height: 30px;
+}
+
+.screenshot {
+	width: 100%;
+}
+
+span.code {
+	font-family: Consolas;
+	font-size: 14px;
+	color: #eae981;
+	background-color: #4b658f;
+	padding: 1px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #6d87af;
+	/*font-weight: bold;*/
+}
+
+.coolheading {
+	text-align: center;
+	font-family: 'Oswald', Helvetica, sans-serif;
+	font-size: 80px;
+	transform: skewY(-8deg);
+	letter-spacing: 8px;
+	word-spacing: -4px;
+	color: #ff6347;
+	text-shadow:
+		-1px -1px 0 #b22222,
+		-2px -2px 0 #b22222,
+		-3px -3px 0 #b22222,
+		-4px -4px 0 #b22222,
+		-5px -5px 0 #b22222,
+		-6px -6px 0 #b22222,
+		-7px -7px 0 #b22222,
+		-8px -8px 0 #b22222,
+		-30px 20px 40px #696969
+}
+
+.navheader {
+	color: #cbca70;
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 19px;
+	background-color: rgba(35,50,76,.9);
+	padding: 10px;
+	border-radius: 8px;
+	border: solid 3px;
+	border-style: dashed;
+	border-color: rgba(96,166,142,.8);
+	margin: 8px 0 8px 0;
+}
+
+a {
+		color: white;
+}
+
+a:hover {
+		color: #9aadcb;
+}
+
+a.navbar:link, a.navbar:visited {
+		display: block;
+		width: 120px;
+		font-weight: bold;
+		color: #fff;
+		background-color: rgba(58,84,127,.7);
+		text-align: center;
+		padding: 2px;
+		border-radius: 8px;
+		border: solid 2px;
+		border-style: dashed;
+		border-color: rgba(96,166,142,.3);
+		text-decoration: none;
+		text-transform: uppercase;
+}
+
+a.navbar:hover, a.navbar:active {
+		background-color: #9aadcb;
+}
+
+h1 {
+	color: #23324c;
+}
+
+h2 {
+	color: white;
+}
+
+h3 {
+	color: #9aadcb;
+	font-size: 20px;
+	margin: 4px;
+	text-align: left;
+}
+
+ul {
+	list-style-type: square;
+	list-style-position: outside;
+	list-style-image: none;
+	padding-left: 1.2em;
+}
+
+ul.navbar {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+li.navbar {
+	float: left;
+}
+
+table, th, td {
+	border: 1px solid #23324c;
+	border-collapse: collapse;
+/*  width: 70%; */
+}
+
+th, td {
+	vertical-align: top;
+	text-align: left;
+	padding:10px;
+}
+
+/* Responsive design conditions. Triggers when display width drops to 500px */
+@media (max-width: 500px) {
+	.coolheading {
+		font-size: 60px;
+	}
+	h2 {
+		font-size: 20px;
+	}
+	h3 {
+		font-size: 15px;
+	}
+}

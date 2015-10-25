@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is the extended Jinja template containing header functionality for
+selecting stage notes via navigation bar, a headline for the notes pages
+and stage note selection block unpacking lesson list and wrapping with html #}
+
+{% block header %}
+<div class="navheader" id="top">
+	<h2 class="addmargin">Udacity Introduction to Programming Nanodegree | Jes 2015</h2>
+	<ul class="navbar">
+		<li class="navbar"><a class="navbar" href="/">Home</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage1">Stage 1</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage2">Stage 2</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage3">Stage 3</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage4">Stage 4</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage5">Stage 5</a></li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block headline %}
+<div class="coolheading">
+	Important Nanodegree Concepts
+</div>
+{% endblock %}
+
+{# Unravels stage notes list with [[lesson,[concept,text],] structure
+and packs it in html #}
+{% block html_stage %}
+{% if page == "stage1" %}{% set stage = stage1 %}
+{% elif page == "stage2" %}{% set stage = stage2 %}
+{% elif page == "stage3" %}{% set stage = stage3 %}
+{% elif page == "stage4" %}{% set stage = stage4 %}
+{% elif page == "stage5" %}{% set stage = stage5 %}{% endif %}
+{% for lesson in stage %}
+	{% set lesson_title = lesson[0] %}
+	<div class="lesson">
+		<p class="addmargin">
+			{% if loop.index > 1 %}
+				<a href="#top" class="toplink">Return to top</a>
+			{% endif %}
+			 <a href="/comment?lesson={{ lesson_title }}" class="commentlink">Leave a comment</a>
+			<br>
+		</p>
+		<h2 class="addmargin">{{ lesson_title | safe }}</h2>
+	{% for concept in lesson[1:] %}
+		{% set concept_title = concept[0] %}
+		{% set concept_desc = concept[1] %}
+			<div class="concept">
+				<h3>{{ concept_title | safe }}</h3>
+				<div class="concept-description">
+					{{ concept_desc | safe }}
+				</div>
+			</div>
+	{% endfor %}
+	</div>
+{% endfor %}
+{% endblock %}

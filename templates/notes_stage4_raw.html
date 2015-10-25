@@ -1,0 +1,623 @@
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is a raw note file for use with Python and Jinja templates  #}
+// LESSON //
+Lesson 4.1: Introduction to networks
+// CONCEPT //
+The connection of things
+<p>
+  The goal is to learn about the internet (the network) and "server-side" programming and as a result produce a functioning interactive web application to share online.
+</p>
+<p>
+  Keywords:
+</p>
+<ul>
+  <li>
+    <b>Network</b> – a group of at least 3 entities that can communicate even if they are not directly connected
+  </li>
+  <li>
+    <b>Latency</b> – the time passed from a message being sent from the source until the destination starts receiving the message. Measured in ms or s typically
+  </li>
+  <li>
+    <b>Bandwidth</b> – the amount of information that can be transmitted over the network per unit of time, the rate. Measured in bps (bits per second) or Mbps
+  </li>
+  <li>
+    <b>Bit</b> – the smallest unit of information (in electronic devices). Represents a 0 or a 1 (on/off, yes/no)
+  </li>
+  <li>
+    <b>Protocol</b> – the set of rules that determine how entities can communicate. On the internet it's what enables client browsers to speak with servers. Examples of protocols are http and ftp for hypertext transfer and file transfer
+  </li>
+</ul>
+<p>
+  When we want to pass messages via a network there are some basic rules that needs to be taken into account for a network to be functional at all. The message must be recognized and understood, so there is a need for encoding and interpreting the messages. There must be a way to route the message in the right direction making sure it ends up at the desired destination. There also needs to be resourcing rules for deciding how simultaneous messages are handled to avoid mix up or loss of information, e.g. if several messages are being passed through the network at the same time.
+</p>
+<p>
+  A protocol has to be in place for a network to be successful because it makes the rules between the entities in the network on how communication is encoded, interpreted, routed, resourced etc.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 4.2: Make the Internet Work for You
+// CONCEPT //
+Uniform Resource Locators
+<p>
+  An URL or Uniform Resource Locator is the human readable location for an entity on the network, e.g. <a href="http://www.udacity.com/courses/all" target="_blank">http://www.udacity.com/courses/all</a>. An URL consists of 3 parts: Protocol, host and path separated by slashes. The protocol (first) part of the URL tells the client application which set of rules to use when communicating with other entities on the network, e.g. via the http or ftp protocol. The host (second) part of the URL is the unique name of an actual (physical) server or specific entity on the network and it also resolves to a numerical (non-practical for humans) address called the IP Internet Protocol address, e.g. 72.14.248.239. The remaining part of the URL is the path that points to a location within the host server or entity.
+</p>
+<p>
+  There's also a hidden part of the URL: The port. It's generally hidden because it's set to a default value for the protocol used (80 for http). If another port is used, this can be changed by adding it to the host address with a colon, e.g. <a href="http://localhost:8000" target="_blank"> http://localhost:8000.</a>
+</p>
+// CONCEPT END //
+// CONCEPT //
+URL parameters
+<p>
+  Browsers understand some basic parameters that can be applied with URLs. One is the <em>GET parameter</em> and it's added after the URL with a question mark (?) followed by any required data to feed to the GET request. This triggers an action in the browser where it interacts with the server to get some data delivered.
+</p>
+<p>
+  Another parameter is called a <em>fragment</em> and it is added after the URL with a hash sign (#). This does not trigger an interaction with the server but instead is processed within the browser on the webpage shown.
+</p>
+<p>
+  Fragments and queries can be called simultaneously with a URL and in that case the query is entered first.<br>
+  Example: <a href="http://toybox.com:8000/toys/cars.php?p=lambo#buyme" target="_blank">http://toybox.com:8000/toys/cars.php?p=lambo#buyme</a>
+</p>
+<table>
+  <tr>
+    <td style="width:150px">protocol:</td>
+    <td style="width:150px">http://</td>
+  </tr>
+  <tr>
+    <td>host:</td>
+    <td>toybox.com</td>
+  </tr>
+  <tr>
+    <td>port:</td>
+    <td>8000</td>
+  </tr>
+  <tr>
+    <td>path:</td>
+    <td>/toys/cars.php</td>
+  </tr>
+  <tr>
+    <td>query:</td>
+    <td>p=lambo</td>
+  </tr>
+  <tr>
+    <td>fragment:</td>
+    <td>buyme</td>
+  </tr>
+</table>
+// CONCEPT END //
+// CONCEPT //
+Http interpretation
+<p>
+  The http URL uses the host name to reach the destination entity on the network. When that location (server) is found, the browser sends an http request line to the server for execution: e.g. <span class="code">GET /toys/cars.php?p=lambo HTTP/1.1</span>. The host name needs not be included because the connection was already made to the host server before the request was sent. Therefore it's just the ´<em>relative</em> path on the server that is used to execute the request.
+</p>
+<p>
+  This is a parallel to html when calling external files with the href attribute of the &lt;link&gt; tag where relative paths are also used. If one mixes up absolute and relative paths, the result is often unexpected or nonfunctional.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Absolute and Relative paths
+<p>
+  The isolated 'path' part of an URL is a string of folders and slashes and a filename which show the relative path to a file at the host address. The full URL is the absolute path pointing with one string to the exact host and location, while the isolated path part is the path relative to the host.
+</p>
+<p>
+  With html, css, scripts and Python it's important to keep in mind when an external call to a file or location requires an absolute or a relative path. This is relevant no matter if the path points to a file via a network protocol or file system path (e.g. <a href="http://toybox.com/toys/cars.php" target="_blank">http://toybox.com/toys/cars.php</a>, <span class="code">&lt;a href="cars.php"&gt;Click Me&lt;/a&gt;</span>, <span class="code">C:\python\foo.py</span>). Relative paths can even include the <span class="code">../</span> path part which tells the browser or file system to look in the folder one level higher than the current folder. So, with these absolute and relative linking methods come great flexibility, but if used incorrectly, the link or external call will not function as expected or may not work at all.
+</p>
+<p>
+  Absolute paths are required when linking to other websites, but is not recommended within one's own website. Instead, using relative links here is especially clever if one's domain (host) name changes because there will be no need to search and replace in all the webpages.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Http requests and http responses
+<p>
+  Commonly used <em>methods</em> sent by a browser on the http protocol to request something of a server are the <span class="code">GET</span> and <span class="code">POST</span> methods. An http request line follows a specific syntax, e.g. <span class="code">GET /toys/cars.php?p=lambo HTTP/1.1</span> followed by headers. The headers all follow a set format: <span class="code">Name: value</span>. Some examples of http request headers are <span class="code">Host: www.toybox.com</span> and <span class="code">User-Agent: chrome v.17</span>.
+</p>
+<p>
+  When the server responds to a request, it does so with an http response line which also follows as certain syntax, e.g. <span class="code">HTTP/1.1 200 OK</span>. The number is a status code and it is followed by an English language reason phrase (always matching the status code). An http response line is likewise followed by headers in a <span class="code">Name: value</span> format, e.g.: <span class="code">Date: Mon Jul 2015 06:24:00 GMT</span>, <span class="code">Server: Apache /2.2.3</span>, <span class="code">Content-Type: text/html</span>.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Servers
+<p>
+  Servers are computers running a server programs that responds to network requests such as http requests. Http servers will deliver either a <em>static</em> or a <em>dynamic</em> response depending on the content type requested. Static responses are made when pre-written files like an image is requested. Dynamic responses are made when a response is built on-the-fly by programs running on the server. Such server programs are called <em>web applications</em> and they generate content in the http language to deliver back to the browser making the dynamic request.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 4.3: Forms
+// CONCEPT //
+Forms
+<p>
+  Forms are all over the internet and are a general use as interface with the human user of a webpage. In html we can add forms with the <span class="code">&lt;form&gt; &lt;/form&gt;</span> tag. The tag itself does not do much but is a placeholder for input methods, e.g. by adding the <span class="code">&lt;input&gt;</span> tag in between the <span class="code">&lt;form&gt; &lt;/form&gt;</span> tags. The <span class="code">&lt;input&gt;</span> tag takes the parameter name which is used as a variable to hold the user input from the input box. It's handy to add a submit button with the <span class="code">&lt;input type="Submit"&gt;</span> inside the <span class="code">&lt;form&gt;</span> tags. Pressing enter Enter or clicking the submit button will submit the input as default to the webpage URL as a query with the <span class="code">?</span> followed by the input name variable with its user input. The code is simple:
+</p>
+<pre>
+  &lt;form&gt;
+    &lt;input name="q"&gt;
+    &lt;input type="Submit"&gt;
+  &lt;/form&gt;
+</pre>
+<p>
+  I'll try it out here. Watch the URL change above when you click submit:
+  <form>
+    <input type="hidden" name="page" value="stage4">
+    <input name="q" value={{q}}>
+    <input type="Submit" value="Submit">
+  </form>
+<p>
+  Fortunately this form data can be channeled elsewhere than just to the URL of the present webpage. By adding the <span class="code">action</span> parameter to the <span class="code">&lt;form&gt;</span> tag and specifying an output URL, the form input can be sent as requests to other webpages. Try Googling a favorite furry animal in this html form input box:
+  <form target="_blank" action="http://www.google.com/search">
+    <input type="text" name="q" value="Woolly mountain tapir">
+    <input type="Submit" value="Google">
+  </form>
+</p>
+<p>
+  Several form inputs can be added inside one <span class="code">&lt;form&gt;</span> tag and that will result in output of the accumulated responses to the form action URL as an URL query separating each input value by the ampersand &amp; character, e.g.: <a target="_blank" href="http://www.toybox.com/toys?q=testarossa&amp;r=lamborghini&amp;s=barbie">http://www.toybox.com/toys?q=testarossa&amp;r=lamborghini&amp;s=barbie</a>
+</p>
+// CONCEPT END //
+// CONCEPT //
+Form elements, input types and groups
+<p>
+  The standard type for an input tag is text format, but this can be changed to provide variation on the ways to allow user input to the form. The input format type is set with the type parameter, e.g. <span class="code">type="text"</span>, <span class="code">type="password"</span>, <span class="code">type="checkbox"</span>, <span class="code">type="radio"</span>. All of input these types can be used in multiple inside a form element.
+</p>
+<p>
+  When several input boxes tags are used in a form they can be used to yield each their separate input result or they can be grouped so the user may select only one amongst a group of inputs. Grouping is simply performed by setting the <span class="code">name</span> parameter the same among the inputs in a group. E.g. the group behavior would be expected by most users for the radio button input type since only one of those buttons in a form should be selectable at a time. To be able to read the selection of the actual grouped form input selected by the user, a <span class="code">value</span> parameter has to be added to each <span class="code">&lt;input&gt;</span> tag. The content of the value parameter will be transferred to the <span class="code">&lt;form&gt;</span> element <span class="code">name</span> variable upon form submission.
+</p>
+<p>
+  To enable the user to recognize the function of one or more input areas in a form, we can embed an <span class="code">&lt;input&gt;</span> element inside a <span class="code">&lt;label&gt;</span> element.
+</p>
+<p>
+  One alternative to grouping inputs would be to give the user a set of choices from a dropdown menu. This is possible with the <span class="code">&lt;select name=&quot;q&quot;&gt; &lt;/select&gt;</span> element. Inside this element must be embedded as many <span class="code">&lt;option&gt;text&lt;/option&gt;</span> elements as choices wanted. The text part in between the opening and closing tags will be the choices visible to the user. The text value in the option element of the selected choice will be transferred to the <span class="code">&lt;form&gt;</span> element <span class="code">name</span> variable upon form submission as default. But the value can also be changed from the option text by applying a value parameter to the <span class="code">&lt;option&gt;</span> elements.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Google App Engine (GAE)
+<p>
+  The Google App Engine SDK is a local server that installs to my computer and runs as a webserver service (for Windows in my case). With a simple piece of starter code and a basic configuration file it runs Python scripts and can just as well run several other programming languages. This seems like we're moving in on the concept of web applications mentioned earlier in this lesson when going over servers and their role on the network. GAE bridges the gap between using Python to generate html as learned in prior lessons and applying it on the server as a web application to generate dynamic content for a browser.
+</p>
+<p>
+  It's great that I can develop and locally host my own webpage this way for quick testing, but an even more mindblowing function of GAE is that it allows me to deploy my web application scripts for hosting on a cloud where others on the internet will be able to reach them day and night.
+</p>
+<p>
+  I should now be able to develop web applications on my computer, test them thoroughly locally and deploy them to the cloud when I'm satisfied. Well, hello, World!
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 4.4: Python Break-Modulus &amp; Dictionaries
+// CONCEPT //
+Modulus Operator
+<p>
+  A data operator written with the percent sign (<span class="code">&lt;number&gt; % &lt;modulus&gt;</span>) working on numbers.  It returns the remainder of the <span class="code">&lt;number&gt;</span> divided by the <span class="code">&lt;modulus&gt;</span>. If <span class="code">&lt;modulus&gt;</span> is greater than the <span class="code">&lt;number&gt;</span>, the operation returns the value <span class="code">&lt;number&gt;</span>.
+</p>
+<p>
+  A practical use for the modulus operator is to find out if a number is equal (<span class="code">&lt;number&gt; % 2 = 0</span>) or odd (<span class="code">&lt;number&gt; % 2 =! 0</span>). Other uses are clock arithmetics, cryptography algorithms and several other things I have no clue about at this point.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Dictionaries
+<p>
+  A data structure as strings and lists but this time with a new structure. It can hold sets of key:value pairs enclosed in curly brackets, like <span class="code">d = {'a':1, 'b':2,'c':7}</span>. The elements must follow the <span class="code">{key:value, key:value, ...}</span> format with keys being unique, i.e. if the same key occurs twice in a dictionary, it will overwrite the former. When printing out the contents of a dictionary they also may not be arranged in the same order as they were written to the dictionary. Keys in a dictionary can be numbers or strings. Values on the other hand are not limited and may be any data structure even lists and dictionaries.
+</p>
+<p>
+  When looking up an element with the index operation, like <span class="code">d['b']</span> it will return the value matching the key being looked up, e.g. for the above mentioned dictionary <span class="code">d['b']</span> would return the value 2. If looking up a key that does not exist in the dictionary, Python returns an error (<em>KeyError</em>).
+</p>
+<p>
+  Dictionaries are mutable (unlike strings, but like lists) meaning a value for any existing key in the dictionary may have it's corresponding value replaced using the index operation on the dictionary key. A new key:value pair can likewise be added with the index operation.
+</p>
+<p>
+  Summary of features of data structures learnt so far:
+</p>
+<table>
+  <tr>
+    <th>String</th>
+    <th>List</th>
+    <th>Dictionary</th>
+  </tr>
+  <tr>
+    <td>str = 'string'</td>
+    <td>lst = ['alpha', 123, ['beta', 345]]</td>
+    <td>dic = {'a':1, 'b':2,'c':7}</td>
+  </tr>
+  <tr>
+    <td>Sequence of characters enclosed in quotes</td>
+    <td>List of elements of any type enclosed in square brackets</td>
+    <td>Sets of key:value pairs enclosed in curly brackets</td>
+  </tr>
+  <tr>
+    <td>Immutable<br>str[2] = 'p' results in error</td>
+    <td>Mutable<br>lst[1] = 'aaa' is valid</td>
+    <td>Mutable<br>dic['c'] = 3 and d['d'] = 4 is valid</td>
+  </tr>
+  <tr>
+    <td>str[i] returns ith character in str</td>
+    <td>lst[i] returns ith element of lst</td>
+    <td>dic[k] returns paired value associated with key k in dic</td>
+  </tr>
+</table>
+// CONCEPT END //
+// LESSON //
+Lesson 4.5: Working with App Engine
+// CONCEPT //
+Using Google App Engine to output my html
+<p>
+  With a little adaptation to the class code contained in the Google App Engine bootstrap Python file (e.g. helloworld.py) it is possible to make the browser output any html input to it. Commenting out or changing the Content-Type header to <span class="code">self.response.headers['Content-Type'] = 'text/html'</span> does the trick. Hereafter replacing the string in <span class="code">self.response.write('Hello world!')</span> with any variable that holds our html is the final step, e.g. <span class="code">self.response.write(html)</span>. From here on it's just a matter of feeding html to the variable and it will output nicely in the browser.
+</p>
+<p>
+  This is the bridge between learning about servers, http requests, html, css and coding Python that outputs html (i.e. Python as a webapp). My html is now easily produced and tested locally and with a click of a button deployed to an online cloud location available for the world. It seems a little complicated with the App Engine starter code (a Python class using <span class="code">webapp2</span> module) and a basic configuration file (app.yaml), but knowing how and where to inject my own code takes away the need to understand all of what is going on.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Request Handlers
+<p>
+  The concept of <em>request handlers</em> or simply <em>handlers</em> is introduced briefly here. It seems awfully abstract. The handlers used in the code of this session are written as new classes inheriting from the <span class="code">webapp2.RequestHandler</span> class, so they extend the functionality of that class to the specific needs of one's own requests. Handlers are used by the server to catch a request (from a client browser to a server), manipulate data and create a (html) response to be returned to the requestor (client browser).
+</p>
+<p>
+  The handlers don't work alone, but go hand in hand with a WSGI application e.g. <span class="code">app = webapp2.WSGIApplication([('/', MainPage), ('/testform', TestHandler)],)</span>. When the application receives a http request to a path that matches what's defined in the WSGI application (here '/' or '/testform'), the handler (here MainPage or TestHandler) is started and the corresponding http method is called (e.g. the GET http request).
+</p>
+// CONCEPT END //
+// CONCEPT //
+Method attribute
+<p>
+  The method attribute can be specified for the html <span class="code">&lt;form&gt;</span> element. By default it is set to GET. When changed to POST the code will only work if there is a method for handling the POST request from the browser form. IF that is corrected, there is still a difference between the otherwise exact same GET request and POST request from the form. With the POST request, the form input parameters are stored in the body of the request header and no longer visible in the URL (like with GET request). Some differences between the two request methods:
+</p>
+<table>
+  <tr>
+    <th></th>
+    <th>GET</th>
+    <th>POST</th>
+  </tr>
+  <tr>
+    <td>URL</td>
+    <td>http://localhost:8080/testform<span style="color: #fff">?q=Udacity</span></td>
+    <td>http://localhost:8080/testform</td>
+  </tr>
+  <tr>
+    <td>Request header</td>
+    <td>
+      GET /testform?q=Udacity HTTP/1.1<br>
+      Accept: text/html, application/xhtml+xml, */*<br>
+      Accept-Language: da-DK<br><br><br><br><br><br>
+      <span style="color: #fff">Content-Type: ; charset="utf-8"<br><br></span>
+      Cookie: _ga=GA1.1.1516330279.1422472062<br>
+      Dnt: 1<br>
+      Host: localhost:8080<br>
+      Referer: http://localhost:8080/<br>
+      User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko<br>
+      X-Appengine-Country: ZZ
+    </td>
+    <td>
+      POST /testform HTTP/1.1<br>
+      Accept: text/html, application/xhtml+xml, */*<br>
+      Accept-Language: da-DK<br>
+      <span style="color: #fff">Cache-Control: no-cache<br>
+      Content-Length: 15<br>
+      Content-Type: application/x-www-form-urlencoded; charset="utf-8"<br>
+      Content_Length: 15<br>
+      Content_Type: application/x-www-form-urlencoded<br></span>
+      Cookie: _ga=GA1.1.1516330279.1422472062<br>
+      Dnt: 1<br>
+      Host: localhost:8080<br>
+      Referer: http://localhost:8080/<br>
+      User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko<br>
+      X-Appengine-Country: ZZ<br>
+      <span style="color: #fff">q=Udacity</span>
+    </td>
+  </tr>
+  <tr>
+    <td>Used for</td>
+    <td>Fetching documents from a server</td>
+    <td>Updating data on a server</td>
+  </tr>
+  <tr>
+    <td>URL length</td>
+    <td>Limited to a max length</td>
+    <td>Unlimited length</td>
+  </tr>
+  <tr>
+    <td>Cached</td>
+    <td>May be cached on nodes along the request route</td>
+    <td>Not cached because the method is used to change data on servers</td>
+  </tr>
+  <tr>
+    <td>Server changes</td>
+    <td>Should not be used to change the server data, only retrieve data</td>
+    <td>Allowed to change server data</td>
+  </tr>
+</table>
+<p>
+  Using GET to perform server changes is possible, but no recommended as it could result in uncontrolled deleted or overwritten data. As a rule of thumb whether it be Python, html, css etc., it seems that it's best to adhere to the accepted standards or there may be some unexpected results when sending my web page or Python code out into the world to interact with others.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 4.6: Validation
+// CONCEPT //
+Validation of received form data
+<p>
+  Validation is verification on the server side that only expected data is received. In the case of users submitting data via html forms, a defined set of input would always be expected. The server should not blindly process any data sent from such forms as they could be used maliciously to input large amounts of trash to slow down or break the server.
+</p>
+<p>
+  Various solutions exist to ensure the server is receiving only valid data. Offering the user only drop-down menu items or buttons would not suffice as a malicious user can always mimic a form input and send data that way anyway. The most effective way is to verify all received data for compliance with expected data formats.
+</p>
+<p>
+  From the user perspective, including input validation and returning guidance messages also helps the user in completing the forms correctly and adhere to the expected rules. Writing out immediate feedback to the user and holding back the posting of a page will prevent bad input from getting stored until it's corrected appropriately.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Checking and responding to validation
+<p>
+  In practice, what happens in a validated form interaction scenario is that:
+</p>
+<ol>
+  <li>User opens webpage making a GET request for the form at the server</li>
+  <li>Server responds with the form html data</li>
+  <li>User submits completed forms making a POST request to the server</li>
+  <li>Server runs validation functions</li>
+  <li>If data is good, server acknowledges receipt of data</li>
+  <li>If data is not validated, server sends back the form data for reentry along with an error message</li>
+</ol>
+// CONCEPT END //
+// CONCEPT //
+String substitution
+<p>
+  A useful Python functionality: <span class="code">&quot;&lt;b&gt;%s and %s&lt;/b&gt;&quot; % (&quot;Pears&quot;, &quot;apples&quot;)</span> outputs the string <span class="code">&quot;&lt;b&gt;Pears and apples&lt;b&gt;&quot;</span>. The variables after the <span class="code">%</span> sign will replace the <span class="code">%s</span> placeholders one by one with the contents of the variables. The amounts of <span class="code">%s</span> placeholders have to match the amount of variables to have their contents inserted. It's a useful way to generate multiple strings with the least amount of repetitive coding.
+</p>
+<p>
+  String substitution can be done with just one variable, several variables and even by applying a dictionary to the string with <span class="code">%</span>, e.g: <span class="code">&quot;I'm %(name)s, but my friends call me %(nickname)s.&quot; % {&quot;name&quot;:&quot;Shelly&quot;, &quot;nickname&quot;:&quot;Turtle&quot;}</span>.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Optional parameters
+<p>
+  When defining Python functions, it's possible to predefine a default value to the parameters. This is done already on the line where the function is defined and when a default value is set for a parameter, that parameter is no longer required when the function is called for it to work – it becomes optional due to the predefined default value. An example of a function with optional parameter: <span class="code">def yearIsValid(year,leapyear=False):</span> In this example the parameter leapyear becomes optional because it defaults to <span class="code">False</span> if not specified. The function may thus be called with just the year or with both parameters now without returning an error.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Preserving user input in forms
+<p>
+  There is a form attribute called <span class="code">value</span> which set the default value in of a form. With a bit of code fiddling it can be used to repeat the latest entry of the form by using the string substitution method on the <span class="code">value</span> attribute: <span class="code">&lt;input type=&quot;text&quot; name=&quot;month&quot; value=&quot;%(month)s&quot;&gt;</span>. This calls for a step of string substitution on the html code before sending it to the browser, e.g. by applying the substitution code <span class="code">% month</span> to the html line. If a longer string of form input html code is processed, a string substitution using a dictionary of all the values should be applied to the html string, e.g. <span class="code">% {&quot;month&quot;:month,&quot;day&quot;:day,&quot;year&quot;:year}</span>.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Html input garbage and escaping
+<p>
+  Using the method of string substitution to preserve form entries is useful to let users see and correct their wrong inputs. A side effect is that if a garbage string is entered, it may be able to mess of the output html if special characters are involved, especially the <span class="code">&quot;&gt;</span> combination that may result in an html closing tag ending too soon and allow the subsequently entered text to pass over to the output html. This open for vulnerabilities or just messing up of the form area.
+</p>
+<p>
+  A way to avoid special characters in form input messing up html is by applying html escape codes. This is done by processing the string of html and replacing specials characters with acceptable html code escape codes, that will not act like html in a browser, but be shown as the characters they represent. Examples:
+</p>
+<table>
+  <tr>
+    <td>Character</td>
+    <td>Escape code</td>
+  </tr>
+  <tr>
+    <td>&quot;</td>
+    <td>&amp;quot;</span></td>
+  </tr>
+  <tr>
+    <td>&amp;</td>
+    <td>&amp;amp;</td>
+  </tr>
+  <tr>
+    <td>&lt;</td>
+    <td>&amp;lt;</td>
+  </tr>
+  <tr>
+    <td>&gt;</td>
+    <td>&amp;gt;</td>
+  </tr>
+</table>
+// CONCEPT END //
+// CONCEPT //
+Redirect
+<p>
+  When using POST for handling the form data submissions and success message, there are some resulting limitations: The link to the success message cannot be shared/linked to for later use and the page will only reload if user accepts an annoying confirmation message.
+</p>
+<p>
+  The resolution is to return a redirect to the browser instead of returning the success message. Then the user sees the redirect page with the success message instead.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 4.7: HTML Templates
+// CONCEPT //
+Templates
+<p>
+  Writing Pyhon code and html strings combined in the GAE web app bootstrap file is doable, but it gets really inconvenient after just few lines of code. One major drawback is that writing two languages in one file takes away the useful code editor syntax highlighting. It gets unmanageable, difficult to make changes to without breaking functionality and even harder to debug. Trouble is that the bugs will only show up when the web app is run in the browser and the browser either gives unexpected output or returns a simple error neither of which is very helpful for locating the bugs in the code. An alternative is needed...
+</p>
+// CONCEPT END //
+// CONCEPT //
+Jinja
+<p>
+  The way to go is by turning to templates (template libraries). This is a method for keeping Python code and html as separate as possible. The html goes into one or more template files that can be called from the main Python code. The library used for maximizing the template method here is Jinja2 (jinja.pocoo.org) which is built into GAE and can be installed to the local Python environment if needed (pip install Jinja2). Jinja will help render complicated html strings for use with the web app. It even has its own programming logic; This is the Jinja syntax for variable substitution: <span class="code">&#123;{ variable }&#125;</span>.
+</p>
+<p>
+  Jinja is made for rendering text in html format and the above code basically substitutes the value of the variable into the text at the location of those delimiters. When writing code in Jinja it is always enclosed between special delimiters like the above mentioned example. It also has a Statement syntax and delimiters for execution of simple operations like <span class="code">if-then-else</span> branching. The syntax is much like in Python but such <span class="code">&#123;% if condition %&#125;</span> statements must be ended with an <span class="code">&#123;% endif %&#125;</span> statement:
+</p>
+<table>
+  <tr>
+    <th>Jinja syntax</th>
+    <th>Code example</th>
+  </tr>
+  <tr>
+    <td>
+<pre>
+&#123;% statement %&#125;
+  Output
+&#123;% end statement %&#125;
+</pre>
+    </td>
+    <td>
+<pre>
+&#123;% if n == 1 %&#125;
+    n equals 1
+&#123;% else %&#125;
+    n does not equal 1
+&#123;% endif %&#125;
+</pre>
+    </td>
+  </tr>
+</table>
+<p>
+  Jinja also handles <span class="code">for</span> loops in that same type of statement syntax code:
+</p>
+<table>
+  <tr>
+    <th>Jinja syntax</th>
+    <th>Code example</th>
+  </tr>
+  <tr>
+    <td>
+<pre>
+&#123;% for statement %&#125;
+  body
+&#123;% end statement %&#125;
+</pre>
+    </td>
+    <td>
+<pre>
+&#123;% for x in range (1,n+1) %&#125;
+    &#123;{ x ** n }&#125;
+&#123;% endfor %&#125;
+</pre>
+    </td>
+  </tr>
+</table>
+<p>
+  It has a built in character escaping method that can be applied to individual variables with the piping symbol, e.g.: <span class="code">&#123;{ item | escape }&#125;</span> will substitute the value of variable <span class="code">item</span> and pipe it through the escape operation to ensure html special characters are converted to their respective escape codes.
+</p>
+<p>
+  The preferred and safer way to remember escaping is setting a jinja environment variable in the main code: <span class="code">autoescape = True</span>. When this is set, the escaping effect can instead be reversed for individual variables if wanted, e.g.: <span class="code">&#123;{ item | safe }&#125;</span>. This is a more secure procedure when building websites to avoid accidental oversight of security openings.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Template inheritance
+<p>
+  So html templates are a benefit for keeping code and html separate, but there's even more to it. Websites are collections of html pages within the same host address and there's usually a uniform structure among all its pages, i.e. some elements like the header and footer sections are recurring through the site. This may give a nice impression to the user about a structured and thought-through site but another feat is that using templates for all the site's pages enables code reusability.
+</p>
+<p>
+  Jinja can reuse templates by inheritance of parent template elements to the child templates – much like classes, objects and their inheritance order. The Jinja parent and child templates go in the same folder and this way it's possible to define a parent template that can be extended by one or more child templates. A child template starts with <span class="code">&#123;% extends &quot;parent.html&quot; %&#125;</span> where <span class="code">parent</span> is the name of the parent html template (in same folder). Now sets of block delimiters can be used to enclose html indicating what html to share among parent and child templates:<br>
+  <span class="code">&#123;% block variable %&#125;<br>
+  ...html...<br>
+  &#123;% endblock %&#125;</span>
+</p>
+<p>
+  Any such shared html block can now be called for use in related templates by calling the specific html block where <span class="code">variable</span> is any name for the block/child template content to insert:<br>
+  <span class="code">&#123;% block variable %&#125;<br>
+  &#123;% endblock %&#125;</span><br>
+</p>
+<p>
+  The navigation bar in the header of this page is created with use of such parent-child template inheritance, blocks and if-then branching with Jinja.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Benefits of templates with Jinja
+<ul>
+  <li>Separate different types of  code (Python from html)</li>
+  <li>Maintain code editor syntax highlighting</li>
+  <li>Make code more readable</li>
+  <li>More secure websites</li>
+  <li>Html that is easier to modify</li>
+  <li>Template inheritance for html "plug-in" functionality and consistency across pages</li>
+  <li>Repeated html elements with simple Jinja syntax</li>
+  <li>Add conditionality of if-then-else branching with simple Jinja syntax</li>
+</ul>
+<p>
+  Avoiding code repetition should be prioritized since the flexibility is greatest when code that performs a particular function is only written once. Every time code repeats, it takes longer to make corrections to that function and the code gets more error prone if the repeated passages are not aligned on updates. Low repetition minimizes the chance of bugs and eases locating them.
+</p>
+<p>
+  Jinja's has code inheritance between html templates. It also has built-in loops and decision branching with <span class="code">&#123;% for x in y %&#125;</span> and <span class="code">&#123;% if condition %&#125;</span> elements which helps keeping code repetition to a minimum. Jinja loops can be used to wrap various elements in highly repetitive elements like an html structure. In this course, Jinja is applied to wrap the course note lessons and concepts into the highly repeating <span class="code">&lt;div&gt;</span>, <span class="code">&lt;p&gt;</span>, etc. tag structure. The course note elements are inserted into the Jinja code by using string substitution on the Jinja code with the <span class="code">&#123;&#123; variable &#125;&#125;</span> element. All in all this greatly eases changes to the layout and takes up less lines of code, i.e. less to look through to find bugs.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 4.8: Databases
+// CONCEPT //
+Databases
+<p>
+  A database is a program that can store and retrieve large amounts of structured data. It's typically run on one or several computers in relation to getting and putting server data for use with webapplications. So when a user browses to a website, the database for that site is may be called for retrieving some data required for building the page served back to the browser.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Tables
+<p>
+  Database tables are structured as grids of columns and rows. Each row is a data set always containing a unique ID (unique for that particular table). The data types in columns can be data types such as integer, string, date. Structures of similar functionality of databases exist in Python but it can be tedious to search and sort in large lists or dictionaries for the wanted data with Python syntax.
+</p>
+<p>
+  E.g. querying a list of lists, tuples or dictionaries like <span class="code">lst = [[‘list 1', 2, 4, 1234], [‘list2', 6, 9, 4321], [‘list3', 7, 3, 9999]]</span> in Python is possible and contents can be sorted and/or returned with <span class="code">.sort()</span> or <span class="code">sorted()</span> functions. Deeper querying/sorting for other than the first sub-list parameter is possible with a parameter to the <span class="code">.sort()</span> function, <span class="code">lst.sort(key = lambda x: x.sub-parameter)</span>. But it gets complicated there and databases are easier for these purposes.
+</p>
+<p>
+  The real downsides of doing database query by hand in Python is that it's error-prone, requires tedious testing and is slow when dealing with thousands or millions of data sets.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Database types
+<p>
+  Relational databases work with tables and use SQL language for data manipulation, examples are postgresql, MySQL, SQLite, Oracle. Other types of databases are Google App Engine Datastore, Amazon Dynamo, NoSQL. There are several  SQL type of databases for free and they are very widespread.
+</p>
+// CONCEPT END //
+// CONCEPT //
+SQL language
+<p>
+  SQL is short for Structured Query Language and the language is used for manipulating the database contents. An example of a query for fetching data is <span class="code">SELECT * FROM links WHERE id=5</span>, which means get all columns from the links table with id=5.
+</p>
+<p>
+  More complicated queries can be executed as well, like <span class="code">SELECT * FROM links WHERE submitter_id=5 OR votes > 23</span> which finds all (*) entries in the table (links) for just the specified criteria (submitter_id and votes). Another one is <span class="code">SELECT * FROM links WHERE votes > 23 ORDER BY votes ASC</span> which finds all entries in the table by the specified criteria but orders the resulting list ascending.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Joins
+<p>
+  A <em>join</em> is an SQL statement involving two tables where one of the tables is used as a lookup table for a value to use in querying the other table. The syntax is getting a bit complex now: <span class="code">SELECT links.* FROM links,users WHERE links.user_id=users.id AND users.name="somename"</span>. Alternatively a similar functionality can be reached by making two queries, one to each table and linking the results.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Indexes
+<p>
+  ACID is a concept of properties that databases can adhere to a greater or lesser extent. Amongst different database types, these properties will vary and there will always be trade-offs.
+</p>
+<ul>
+  <li>Atomicity – all parts of a transaction succeed or fail together.
+    <ul>
+      <li>It's required to avoid some data gets written partially in case of a write failure in the database. Either data get stored as requested or nothing gets stored at all.</li>
+    </ul>
+  </li>
+  <li>Consistency – the database will always be consistent.
+    <ul>
+      <li>It ensures that multiple database tables or elements that are updated simultaneously will always be consistent at any time one of such correlated elements are read.</li>
+    </ul>
+  </li>
+  <li>Isolation – no transactions can interfere with another's.
+    <ul>
+      <li>It ensures that simultaneous writes to the database will not be able to interfere with other database values currently being written, e.g. by locking elements or ensuring writes get resolved one at a time.</li>
+    </ul>
+  </li>
+  <li>Durability – once the transaction is committed, it won't be lost.
+    <ul>
+      <li>This ensures that data successfully written to a database is also there after a crash or closing the database.</li>
+    </ul>
+  </li>
+</ul>
+// CONCEPT END //
+// CONCEPT //
+Google App Engine Datastore
+<p>
+  GAE Datastore is a NoSQL type database provided by the GAE. In this database, tables are called entities. This means it does not store data in the Excel-like table format. Instead, its entities are rows of table data converted to objects. Each entity object has attributes matching what would be the table column headers.
+</p>
+<p>
+  In this database type the entities "float" independently of each other in contrast to a table type database where row are tied together in tables. A benefit of this organization type is that it allows for scaling to very large amounts of data while maintaining speed of access.
+</p>
+  In Python, the GAE Datastore is imported for use with <span class="code">from google.appengine.ext import ndb</span>. A parent class is then defined with <span class="code">class Myclass(ndb.Model):</span> and database entities are hereafter created as objects of this class adding as many instance variables/attributes as wanted within each entity. Finally, the entities may be saved to the database with the <span class="code">Myentity.put()</span> function. When developing locally, the actual database will be stored in a file on the computer.
+</p>
+<p>
+  Querying data from the GAE Datastore is done from the class that was used to create the entities and the query may also be sorted on an instance attribute at the same time. The following pulls all entities from the Myclass database and orders them after the date attribute values: <span class="code">query = Myclass.query().order(Myclass.date)</span>. Next, individual entities can be fetched from the query and the output is a list, e.g. <span class="code">fetch_list = query.fetch(3)</span> which gets (up to) 3 entities from the query. From here, it's straightforward to pull single entities from the list, e.g. <span class="code">entity1 = fetch_list[0]</span>, and the entity's attributes can be pulled as well e.g. <span class="code">entity1_date = fetch_list[0].date</span>.
+</p>
+// CONCEPT END //
+// LESSON //
+Bonus take-aways from Stage 4 lessons
+// CONCEPT //
+Bonus learning 1
+<p>
+  I noticed the use of arguments in the form of <span class="code">*</span>, <span class="code">*args</span> and <span class="code">**kwargs</span>. I had to dig deeper on my own to know what those did, which was useful. I learned that <span class="code">*args</span> is used to unpack ordered data structures like lists and tuples and pass them as arguments to a function. <span class="code">**kwargs</span> does the same but works with unordered data structures like dictionaries. Examples: <span class="code">print function(*my_tuple)</span> or <span class="code">print function(**my_dictionary)</span>.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Bonus learning 2
+<p>
+  I learned more about GAE Datastore by watching the recorded IPND session by Mark and Luke which was extremely helpful. A great learning was also that a lot can be learned from the GAE logs when working with GAE and GAE Datastore. Adding Python <span class="code">print</span> lines within the GAE code classes will output to the GAE log making it an extremely useful way to do on-the-fly debugging, checking variable contents etc.
+// CONCEPT END //

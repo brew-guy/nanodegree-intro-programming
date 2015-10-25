@@ -1,0 +1,330 @@
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is a raw note file for use with Python and Jinja templates  #}
+// LESSON //
+Lesson 2.1: Introduction to serious programming
+// CONCEPT //
+Computer programming
+<p>
+  Programming is the series of instructions fed to a computer to make it do what I want it to. Without programming, the computer does nothing and is even less useful than a toaster. I will be programming in Python language and the Python interpreter translates the code I write into special machine instructions that the computer understands. There are many other programming languages apart from Python. Computer programs come in endless forms and with just as many purposes. Some examples are web browsers, mobile phone apps, Python programs written during this course and even the Python interpreter itself.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Programming language
+<p>
+  The first program of the course was done in Python and was a simple one-line where I feed the Python interpreter a command and an expression. Using the print command, I was able to print to screen a sum of calculation of the amount of minutes in seven weeks. Second I learned that Python treats numbers as integers until at least one of the numbers in an expression is made decimal.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Computer science - natural vs. programming languages
+<p>
+  Although computer science sounds equal to computer programming at first sight, it is not the same. Computer science has theoretical concepts to it that are not necessarily needed for programming. They do help understanding the background for why computers and programming languages are built as they are. Examples of theoretical concepts: Ambiguity - natural human languages are easily misinterpreted while programming languages are not. Verbosity - programming language can compactly describe the required details that would take long sentences to describe with natural languages. On the other hand, programming languages are less flexible and have to follow a set syntax strictly. Sentences in human language may contain errors and still be interpreted by other humans, while this would never work under a programming language syntax.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Computer grammar - syntax and validity
+<p>
+  Many computer language sentences follow a grammar dictated by the Backus-Naur form, a replacement grammar where <em>Non-terminal</em> sentence elements may be replaced until only <em>Terminal</em> elements are left at which point the sentence must end. This language grammar can also be called the syntax and it dictates when a programming sentence or arithmetic expression must end to be readable by the interpreter. The code will not run if not adhering to the syntax, otherwise it would open up for unpredictable results. The Python syntax is very picky with space indentation, case sensitivity and arithmetic expression rules. A Python "expression" is a legal Python statement. For example: <span class="code">print 1 + 1</span> is a valid expression, but <span class="code">print 1 +</span> (without a number at the end) is not.
+</p>
+<p>
+  Grace Hopper insinuated that computers could do more than arithmetic. I hope it's true or this course may not be what I signed up for :)
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 2.2: Variables and Strings
+// CONCEPT //
+Code readability - the variable
+<ul>
+  <li>What is a variable?
+    <ul>
+      <li>A variable is basically a name that refers to a value. The value stored or assigned to the variable may change during the run of my code. This is what makes them variables.</li>
+    </ul>
+  </li>
+  <li>What does it mean to assign a value to a variable?
+    <ul>
+      <li>A value is assigned to this name by writing an assignment statement in the form of 'Name = Expression'. The variable called Name hereafter contains/holds the Expression, so whenever referring to the variable in the code, the Python interpreter will actually use the value that is contained therein. A few simple rules for naming of variables apply - must start with a letter or an underscore. It greatly increases code readability to assign values to cleverly named variables.</li>
+    </ul>
+  </li>
+  <li>What is the difference between what the equals = means in math versus in programming. What's the difference between this: <span class="code">2 + 3 = 5</span> and this: <span class="code">my_variable = 5</span>?
+    <ul>
+      <li>The variable holding a value in Python is not the same as a usual math equation even though they are written in very much the same way. The Python instruction means that the value on the right side of the equal sign is assigned or put into the named variable on the left side of the equal sign. The variable can change as the code executes and thereby start out from a base value which then changes over time.</li>
+    </ul>
+  </li>
+</ul>
+// CONCEPT END //
+// CONCEPT //
+Defining variables
+<p>
+  A value must be assigned to a variable before it can be used in Python. Any variable don't just hold no value or the value 0, so Python will break the program and return an error if trying to refer to a variable that was never assigned a value to begin with.
+</p>
+<p>
+  When Python assigns a value to the viariable, it evaluates the equation on the right side of the equal sign first and then moves the result to the variable name on the left side of the equal sign.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Strings
+<p>
+  Strings are text contained within a set of single- or double quotes (<span class="code">''</span> or <span class="code">""</span>). One additional method of enclosing strings is within triple quotes (<span class="code">'''</span> or <span class="code">"""</span>) which can hold strings broken over several lines. Variables can also hold strings just as they can hold numbers. Variables can only hold one data type at a time though, so strings and numbers cannot be mixed. If a number is enclosed by quotes it will be treated like a string. Two strings can be concatenated into one new string just by using the <span class="code">+</span> sign as an operator between the strings. Strings can be multiplied with the <span class="code">*</span> sign to repeat the string a given amount of times. String concatenation can be useful when working with html because tags can be concatenated with text to build working html code.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Indexing strings
+<p>
+  Indexing of strings is used to extract individual letters or parts of a string. Syntax for the indexing is <span class="code">s[i]</span> which outputs the character that matches the index i of the string s. Indexing starts with 0 and this index point to the first letter of the string. Negative index numbers counts back from last letter in the string starting with -1 for the last letter. Sub-sequences of the string can be returned in the same way by applying syntax <span class="code">string[i:j]</span>. Leaving the i and/or j index empty will select all letters from the beginning and/or end of the string.
+</p>
+<p>
+  Extracting sub-sequences of strings by indexing is useful when working on html since tags can be filtered out and only the actual text extracted from the html code.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Finding a sub-string inside strings
+<p>
+  Syntax for finding a string within a string is a little odd as the find operator is appended to the search string: <span class="code">s.find(t)</span> where s is the string to be searched and t is the target string to be located. The function will return the index of the first occurrence of string t in string s. -1 is returned if t not found in s. The find operator takes one more parameter: <span class="code">s.find(t,i)</span> and this enables us to start the search for string t after index i in string s. This again should enable us to find more than the first occurrence of t in s given there are more occurrences. When the parameter i is set higher than the index of the last occurrence of t in s, the output will be -1 signaling there is no more to be found in s. This will be powerful when combined with a loop!
+</p>
+// CONCEPT END //
+// CONCEPT //
+Abstract thinking
+<p>
+  Imagining what a piece of code may produce as a result is abstract thinking. Letting my brain keep track of the values stored in the variables and the operations performed on strings etc. as the code runs is abstract but good practice for insight into how the interpreter works.
+</p>
+<p>
+  Applying negative index counting on sub-sections of strings is more functional than counting in absolute index positions when it comes to separating html into opening tags, closing tags and text. The reason being negative indexing will split html for any length of text thus making it a <em>general solution</em> as opposed to a <em>specific solution</em>.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Bugs
+<p>
+  When code runs off the trail, does not behave as expected and returns an error. A common cause of bugs in code are <em>edge cases</em> e.g. where string indexing gives non-meaningful results.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 2.3: Input -> Function -> Output
+// CONCEPT //
+Functions
+<p>
+  Also referred to as <em>procedures</em>. They are separate pieces of code that will not run until called from the main program. Functions can take <em>parameters</em> for <u>input</u> such as strings and expressions which may then be processed by the function to create the return value or <u>output</u> of the function. Functions are <u>created</u> or defined with the syntax <span class="code">def function_name(arg1,arg2…etc.):</span> and the function will output a result when a <span class="code">return</span> command is reached inside the function's code. It appears that space indentation of all subsequent lines of code after <span class="code">def</span> is important. When indentation is back to 0 again the function ends. A function does not need a <span class="code">return</span> statement to be functional, but it will not produce an output if a <span class="code">return</span> is not included! To <u>call or use</u> the function defined, it must be called from the main code by writing its name and giving the exact required amount of arguments, e.g. <span class="code">print function_name("Count to three", 3)</span>. What happens upon calling a function from the main code is that whatever arguments ("Count to three", 3) are passed to the function will be assigned to the argument variables (<em>arg1, arg2</em>) of the function. Variables used inside function code are not shared or overlapping with variables used in the main code.
+</p>
+<p>
+  Functions seems to work like a sort of new Python command that I added to the common "dictionary" of known Python commands but I can use my function only when it's defined in my program. Since functions work like any other Python command, they fit nicely into the syntax. I can call a function and use its output with any other command. I can even nest one call to a function as a parameter for another function - procedure composition. All this functionality of functions is highly usable in terms of avoiding repetitions because it automates processing of data following a controlled set of instructions and at the same time allows for endless variations on the input fed to the function. Functions sapre the programmer of repeating the same set of instructions over and over in his/her code.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 2.4: Control Flow &amp; Loops: If and While
+// CONCEPT //
+Making decision
+<p>
+  <em>Comparison</em> operators (or Boolean operators) in Python are <span class="code">&lt;</span>, <span class="code">&gt;</span>, <span class="code">==</span>, <span class="code">!=</span>, <span class="code">&lt;&gt;</span>, <span class="code">&lt;=</span>, <span class="code">&gt;=</span> are used to compare values and variables. We need a double equal (<span class="code">==</span>) for Boolean comparisons because the single equal (<span class="code">=</span>) means <em>assignment</em> in Python. Two or more comparisons can be evaluated in succession with the <span class="code">or</span>, <span class="code">and</span>, <span class="code">not</span> <em>logical</em> operators. The output of a Boolean comparison is a <span class="code">True</span> or <span class="code">False</span> return code that can be used to make a decision about the further flow of the program. This is done by applying the <span class="code">if</span> and <span class="code">else</span> commands to the result of the decision result.
+</p>
+<p>
+  Another useful way to exploit Boolean comparison is creating a loop with the <span class="code">while</span> command which makes the same code run over and over until the test expression returns a <span class="code">False</span>. The variable tested should probably change during the loops or the test may never return <span class="code">False</span> causing the <span class="code">while</span> loop to never end - it could be desired but would call for a break of the program somehow else. Breaking an infinite <span class="code">while</span> loop or breaking the loop before the test expression evaluates to <span class="code">False</span> can be done with the <span class="code">break</span> command.
+</p>
+<p>
+  On par with functions it's important to indent any code that must run under the <span class="code">if</span>, <span class="code">else</span> and <span class="code">while</span> blocks.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Procedural thinking
+<p>
+  Applying <span class="code">if</span> and <span class="code">else</span> works well and is logical in many situations, but for evaluation or decision making based on larger amounts of variables the <span class="code">if</span> <span class="code">else</span> structure gets daunting. Instead, reusing functions and nesting function calls inside other function calls or commands can alleviate such unmanageable structures and minimize repetition (which we like very much :-). Such procedural thinking and code execution results in more elegant solutions. The concept was nicely illustrated with the solution to the function that identified the biggest among three input values:
+</p>
+<table>
+  <tr>
+    <th>Procedural</th>
+    <th></th>
+    <th>Clumsy</th>
+  </tr>
+  <tr>
+    <td>
+<pre>
+def bigger(a,b):
+  if a &lt; b:
+    return a
+  else:
+    return b
+
+def biggest(a,b,c):
+  return bigger(bigger(a,b),c)
+
+print(biggest(1,2,3))
+</pre>
+          </td>
+          <td>vs.</td>
+          <td>
+<pre>
+def biggest(a,b,c):
+  if a&lt;b:
+    if a&lt;c:
+      return a
+    else:
+      return c
+  else:
+    if b&lt;c:
+      return b
+    else:
+      return c
+
+print(biggest(1,2,3))
+</pre>
+    </td>
+  </tr>
+</table>
+<p>
+  On par with functions it's important to indent any code that must run under the <span class="code">if</span>, <span class="code">else</span> and <span class="code">while</span> blocks.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 2.5: Debugging
+// CONCEPT //
+Science of debugging
+<p>
+  Bugs are unavoidable and part of programming when developing reliable software, so we have to apply techniques to root out and systematically test for bugs in the code. Some bugs crash the program, some make it loop forever, while others are more tricky in that they don't show their malicious effect so obviously.<br>
+  There are various ways to test pieces of code for bugs (and expected behavior):
+</p>
+<ul>
+  <li>Examine the error message when  the code crashed.</li>
+  <li>Set the code aside and work on a copy of the code to explore new approaches.</li>
+  <li>Check for compatibility issues when using example code. Some Python v2 code won't work out of the box with Python v3 interpreter.</li>
+  <li>Insert print statements along the program flow to ensure the variables and outputs reads the expected values or hint at you what is going wrong.</li>
+  <li>Keep working versions of code so you can revert back to it for comparison if too many new bugs gets introduced on later versions.</li>
+</ul>
+<p>
+  Putting malfunctioning code aside is a very useful approach, which retains the first attempts at the code while enabling me to further develop on a copy of it. It's like branching off my original program and take it in new directions without losing my initial attempts. I can do this by copy-pasting my code to a new section and set the other copy aside by marking it as comment with the hash-sign (<span class="code">#</span>) or mark it as one big string enclosed by the triple-quotes (<span class="code">'''</span>). I could also duplicate the code into a whole new file and work on my new branch from there.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Modular code and systems thinking
+<p>
+  Modular coding is about separating my raw data (course notes) from the code that produce the visual output (HTML and CSS code). This means I can alter my raw data at any time and easily have this reflected in the visual output by running it through the code modules to produce updated HTML again. This way I avoid digging through my HTML to do changes. It should also decrease the risk of introducing HTML bugs if I forget a tag or something in there.
+</p>
+<p>
+  Breaking down a large task into sub-tasks will allow me to focus on resolving sub-tasks individually and in the end, I can piece together the functions for each sub-task to crack the large task as a whole. The modules or functions that will eventually make up my program may already exist and I can thereby incorporate clever solutions developed by others. This is getting bigger than what my own limited brain can come up with. I like it!
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 2.6: Structured Data: Lists &amp; For Loops
+// CONCEPT //
+Lists
+<p>
+  Lists seem similar to strings - and they are some of the way at least. They are structured collections of data which is assigned to the list variable the "usual" way with a single equals sign, like <span class="code">mylist = [1, 'John',[2.5,3,'Elvis']]</span>. Lists hold their elements in brackets and may contain numbers, strings and even other lists.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Accessing lists
+<p>
+  The elements in a list can be accessed similarly to strings by pointing to the nested elements with index pointers. This makes it possible to access and slice list elements: <span class="code">print mylist[0]</span> or <span class="code">print mylist[1:]</span>. Elements of lists nested inside another list may also be accessed by pointing one layer deeper into the list, like <span class="code">print mylist[2][2]</span>.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Manipulating and mutating lists
+<p>
+  Contents of lists can be changed by pointing to the index of the list and assigning a new value to replace what was there, like <span class="code">mylist[1] = 'McGyver'</span>. The other list elements are still the same and that particular element at position 1 is just replaced. The big difference between strings and lists here is that the list support mutation whereas strings are immutable. The meaning of this becomes clear when a list is assigned once more to a new variable, e.g. <span class="code">yourlist = mylist</span>. This is called aliasing as both variables refer to the same list and if I manipulate the list via one variable, it will affect the output I see when I look at the list via the other variable. This is very unlike how string variables act, because strings are not modified but instead completely replaced by a new string whenever it's manipulated by assignment.
+</p>
+// CONCEPT END //
+// CONCEPT //
+List operations
+<p>
+  More methods are available to manipulate lists. One method is called <span class="code">append</span> and it's used by connecting the method to the list variable with a dot, like <span class="code">mylist.append(element)</span>. This method adds an element of any kind to an already defined list. If a list is appended to a list, the appended list will be nested inside the first list. The operator <span class="code">+</span> works on lists as well and will concatenate one list to another. It will not manipulate any of the elements in either list, just produce a list with the total amount of elements of both lists. The difference between <span class="code">.append</span> and <span class="code">+</span> operations is that <span class="code">+</span> merges the elements while <span class="code">.append</span> nests the appended element inside the list. <span class="code">+</span> operations will overwrite the variable with a new list, while <span class="code">.append</span> maintains the aliasing effect, so other variables pointing to the same list will also be affected. The method <span class="code">len(my_list)</span> is used to output the number of elements in a list.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Looping through lists
+<p>
+  The <span class="code">while</span> loop can be used to loop through a list but it much less code to use a <span class="code">for</span> loop because it automatically determines the amount of elements in a list. Using the <span class="code">while</span> loop I would have to apply a variable as a counter and set a condition for the loop to make it break when the last list element was reached. All of this happens automatically with the <span class="code">for</span> loop.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Rummaging through lists
+<p>
+  <span class="code">For</span> and <span class="code">while</span> loops are useful for flipping through the elements of lists, but when it comes to identifying the first occurrence of a value in a list there's a shorter way. It's done with the <span class="code">.index</span> operator: <span class="code">mylist.index(value)</span>. One potential drawback is that it returns an error and not -1 if the value was not found in the list. To overcome this, we can first check whether the value occurs in the list with the <span class="code">in</span> operator, e.g. <span class="code">if value in mylist</span> … etc. This will return <span class="code">True/False</span> depending on whether the value was contained in the list.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 2.7: How to Solve Problems
+// CONCEPT //
+Breaking it down - definitions and assumptions
+<p>
+  First thing, make sure I understand the problem fully. Decide what are the exact inputs (how many and in what units) and what are the outputs required to solve the problem in question. Are there any assumptions that affect the inputs required?
+</p>
+// CONCEPT END //
+// CONCEPT //
+Defensive programming - debug, test
+<p>
+  Assumptions make the code simpler and may affect the required inputs. To be safe when writing the code, I should build in checks along the way to validate that the inputs fed to my function is really of the order, size, limits, units, encoding and representation as assumed. Unexpected inputs could come from human input or bugs from elsewhere in the program.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Mapping inputs to correct outputs - understand
+<p>
+  Next up is working out how the inputs can turn into the correct output by way of programming. Working out some examples will be a good way to see if I understand the problem well and may help me test edge or extreme cases for things I need my code to take into account later on. I'll list some examples on paper or in my head with given inputs to see if I understand what I want my program to output.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Solve the problem as a human - still no coding!?
+<p>
+  To further ensure I understand the complexity of my coming code, I should perform some real life simulations of my program using my brain and real life things to find outputs from some test inputs. If I can understand what I want the program to do, I am much better off later on when finding algorithms and breaking the code down into smaller steps. I can write on paper some pseudo-code that in rough structure looks like Python code but paired with human language from how I solved the real life simulations. This will outline how the problem is solved when translated from human to Python language.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Simplify - computers are fast
+<p>
+  It's just about time to start the actual coding, but first I have to think about how my pseudo-code may be simplified. My brain is limited in speed for solving certain types of problems, whereas a computer is not. I should consider resolving my problem the simplest possible way even though it's seemingly not the fastest. Python does not care about doing repetitive braindead calculations whereas my brain would be choose ways that would require quite complex coding. So select simple over fast. Optimizations can be done later and modern CPUs are blazing fast, so I may be looking at just a few milliseconds difference in processing time anyway.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Writing code - simple first
+<p>
+  The coding can start and based on prior steps, I can work out what other helper functions may be required to do sub-steps for my routine. I will start out simple, adding only one supporting function at a time in the most logical order of necessity and immediately test if its direct functionality is as expected. I.e. I will write a test for the actual sub-routine / support function. I will build my code with focus on a simple backbone and adding the more complicated or specialized functionality later on. Make the guts of the routine working before adding complexity.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Correct code is progress - testing, testing
+<p>
+  Writing small bits of code and testing often is the way to go. It's progress even if the problem is not yet resolved at this time. Don't optimize prematurely! Keep it simple and correct. Approximate results may be the way to go until fine-tuning is made later on. As long as it produce correct and expected results, it is progress.
+</p>
+<p>
+  Validation checks should be added as I go along and adding assertions with the <span class="code">assert &lt;Expression&gt;</span> statement is great for this. If the <span class="code">&lt;Expression&gt;</span> is <span class="code">False</span>, the statement breaks the routine with an exception. This is helpful for the programmer as it breaks and points to the line in the code where things went wrong.<br>
+  Universal guide to resolving all problems in the galaxy:
+</p>
+<ol start="0">
+  <li>Don't panic !</li>
+  <li>What are the inputs?</li>
+  <li>What are the outputs?</li>
+  <li>Work through some examples by hand</li>
+  <li>Simple mechanical solution</li>
+  <li>Develop incrementally and test as you go</li>
+</ol>
+// CONCEPT END //
+// LESSON //
+Bonus take-aways from Stage 2 lessons
+// CONCEPT //
+Bonus learning 1
+<p>
+  I got a working programming environment of Python set up to work on my computer with Sublime Text. It took some reading on the web and following other people's advice before I got it set right, but now I have this cool 2-column set up with an output console at the bottom. This enables me with the press of a key shortcut to interpret and run my Python code and see the result immediately in the console. I can even grab the output from the console and paste it to my html code thanks to the 2-column set-up. This should come in handy!
+</p>
+<p>
+  <a href="/static/ST3.png" target="_blank"><img src="/static/ST3.png" alt="Screenshot of Sublime Text 3" class="screenshot"></a>
+</p>
+// CONCEPT END //
+// CONCEPT //
+Bonus learning 2
+<p>
+  We're now up to three programming languages and of course also 3 different ways (well 4...) to add comments inside these :)
+</p>
+<p>
+  HTML comments must be enclosed in <span class="code">&lt;!--</span> <span class="code">--&gt;</span>, CSS comments are enclosed by <span class="code">/*</span> <span class="code">*/</span> and Python comments are marked with the hash-symbol <span class="code">#</span> and the rest of that line becomes comment. Another Python option is to enclose in docstrings (<span class="code">'''</span>) which enables comments to span several lines (not really comment but creates a string which is not processed by the interpreter).
+</p>
+// CONCEPT END //
+// CONCEPT //
+Bonus learning 3
+<p>
+  I learned a neat and clean way to implement bug and functionality testing as I run my code using <span class="code">assert</span> statements in a separate test function. This makes it easy for me to turn on/off and adjust my testing as opposed to writing tests directly into the code here and there, e.g.:
+</p>
+<pre>
+def test():
+  assert myFunc(1,2,3) == 6
+  assert myFunc2(1,2,3) == (3,2,1)
+  assert daysBetweenDates(2012,3,3,2012,3,3) == 0
+  print('Tests finished.')
+test()
+</pre>
+// CONCEPT END //

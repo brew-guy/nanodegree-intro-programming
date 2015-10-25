@@ -1,0 +1,44 @@
+{% extends "root_header.html" %}
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is the extended Jinja template containing a headline and some simple
+FizzBuzz functionality #}
+
+{% block headline %}
+<div class="coolheading">
+	FizzBuzz
+</div>
+{% endblock %}
+
+{% block fizzbuzz %}
+{% if page == "fizzbuzz" %}
+	<br><br>
+	<form>
+		<h4>Give me a whole number:</h4>
+		<input type="hidden" name="page" value="fizzbuzz">
+		<input type="number" name="buzz">
+		<input type="submit" value="Buzz">
+	</form>
+{% endif %}
+{% if buzz == '' %}
+	<br><span style="color: #ff6347"><b>Error:</b> Please type a positive integer.</span>
+{% else %}
+	<ol>
+		Current selection: {{ buzz }}
+		<br><br>
+		{% for x in range (1, buzz+1) %}
+			<li>
+			{% if x % 15 == 0 %}
+				<span class="code">Fizbuzz</span>
+			{% elif x % 5 == 0 %}
+				<span class="code">Buzz</span>
+			{% elif x % 3 == 0 %}
+				<span class="code">Fizz</span>
+			{% else %}
+				{{ x }}
+			{% endif %}
+			</li>
+		{% endfor %}
+	</ol>
+{% endif %}
+{% endblock %}

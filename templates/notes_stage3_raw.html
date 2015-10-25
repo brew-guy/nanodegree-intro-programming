@@ -1,0 +1,240 @@
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is a raw note file for use with Python and Jinja templates  #}
+// LESSON //
+Lesson 3.1: Introduction to Abstraction
+// CONCEPT //
+From idea to code
+<p>
+  This session builds on my knowledge on if statements, loops and functions from the former sessions and will focus on turning ideas into code through new concepts. It will take me through a bunch of programs stepwise towards an understanding of the abstract idea of classes and objects. I will learn to make a program that tells someone to take a break from work, a program that discovers profane words in my text and a web based movie database. I am promised a friendly learning curve :-)
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 3.2: Use Functions
+// CONCEPT //
+Use web to find code and solutions
+<p>
+  This session is about strengthening my knowledge of Python functions and it is built around writing programs from the level on an idea and turning those ideas into functions. There are numerous ways to get the job done but this session outlines routes with searching online for help to make those ideas a viable in code.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Take a break - import modules
+<p>
+  First off was building a program that interrupts me every 2 hours so I can take a break from studying. I had to turn my idea into code that:
+</p>
+<ol>
+  <li>keeps track of time</li>
+  <li>waits for 2 hours</li>
+  <li>opens a browser</li>
+  <li>plays a video and then</li>
+  <li>loops 3 times</li>
+</ol>
+<p>
+  Additional Python modules beyond the standard modules available can be imported into my code by calling them, e.g. <span class="code">import time</span> where <span class="code">time</span> is the name of the module which functions I want to be available for use downstream in the code. The imported <span class="code">time</span> module contains functions that can be called using the syntax <span class="code">time.cdate()</span> – in this case calling the function <span class="code">cdate()</span> from the module <span class="code">time</span>. In the same way I can import a module called <span class="code">webbrowser</span> and call its <span class="code">open</span> function to have a video pop up and remind me to take a break: <span class="code">webbrowser.open('link')</span>.
+</p>
+<p>
+  A vast new world of functionality opens up this way and <em>Python Standard Library</em> is the go-to place for finding out more about modules and how to use them.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Abstraction
+<p>
+  It is unknown to me as the user how Python's built-in functions actually do what they do. This <em>"abstraction"</em> is the hiding of the low-level functionality so I do not get to see how the functions work, I just know what they do and that they can be called from within the program. It enables the programmer to focus on writing the program on a more high-level language instead of having to deal with how the stuff gets executed at the lowest level in the interpreter.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Hidden message - filesystem fun and exceptions
+<p>
+  Last part of the session applied same approach with online searching to help produce code that will rename several files in a folder based on a set of rules to produce new file names and in this way solve a hidden message. This called for importing the <span class="code">os</span> module and using some of its functions like <span class="code">os.listdir(path)</span>, <span class="code">os.chdir(path)</span> and <span class="code">os.rename(src,dst)</span>. We learned that if file handling meets an unforeseen event it is called and <em>Exception</em>, e.g. attempt to rename a file that does not exist or attempt to rename to a file that already exists (overwrite).
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 3.3a: Use Classes- Draw Turtles
+// CONCEPT //
+Classes with Turtle
+<p>
+  Apparently, functions have their limits and therefore another concept called <em>Classes</em> is available in Python. The prior session ended on an attempt to build a movie database with functions and that proved unhandy.
+  The concept of Classes is introduced by learning to draw shapes with the <span class="code">turtle</span> module (lowercase t). Instead of containing a variety of functions inside, this module contains classes. The <span class="code">turtle</span> class is called <span class="code">Turtle</span> (uppercase T) which we can initiate and "clone" to as many <em>instances</em> (or <em>objects</em>) as we want, e.g. like this.: <span class="code">brad = turtle.Turtle()</span> or <span class="code">shelly = turtle.Turtle()</span> etc. The newly cloned instances of turtle, brad and shelly, have access to the exact same methods (class equivalent to functions) that are available within the <span class="code">Turtle</span> class. The class along with its methods inside thus serves as a sort of a blueprint for many similar objects or instances of itself.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Function vs class - __init()__
+<p>
+  There is a certain difference between calling a function such as <span class="code">webbrowser.open()</span> and class such as <span class="code">turtle.Turtle()</span>. The first example (the function) is simply running the function <span class="code">open()</span> within the <span class="code">webbrowser</span> module. The second example (making an instance of the class) initiates a function called <span class="code">__init__()</span> inside the class <span class="code">Turtle()</span>. This reserves space for an instance or clone of the <span class="code">Turtle()</span> class with all it's contained functions.
+</p>
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/lB--nrwmGJ8" allowfullscreen></iframe>
+// CONCEPT END //
+// LESSON //
+Lesson 3.3b: Use Classes- Send Text
+// CONCEPT //
+SMS from Python
+<p>
+  The third party Python module Twilio can be used to send sms to phones. Twilio is installed to use with Python from the command prompt: <span class="code">pip install twilio</span>. Now this module and its functions and classes can be used. This time instead of importing the full twilio module and all its functions, we learned to import just the functions required for our code with the command <span class="code">from twilio import rest</span>. Unfortunately the free Twilio account did not support sms in Denmark so I was unable to test the Python code for sending messages to my phone.
+</p>
+<p>
+  The lesson quiz was quite useful:
+</p>
+<ul>
+  <li>What is a class?
+    <ul>
+      <li>I think of a class as a blueprint that can be cloned into instances of itself. The class is a piece of code stored inside a module or a .py file.</li>
+    </ul>
+  </li>
+  <li>What is an instance of a class?
+    <ul>
+      <li>An instance of a class is also referred to as an object. It's a copy of the blueprint that can do whatever was stored in the class.</li>
+    </ul>
+  </li>
+  <li>Thus far we have compared the class to a blueprint. Can you think of another analogy to explain classes and their instances?
+    <ul>
+      <li>The instance or object can be ssen as a clone of the class. All the individual clones that I create from the class (blueprint) inherit the same functionality that was imbedded within the parent class. I can send off my little clones to do stuff in my program and if I want to add functionality to my clones, I only have to change my class and the clones will automatically inherit those updates. It's a practical way to reduce repetition in the code. Another analogy could be to view the class as a factory that produces units that can do something special. All the units can do the same but they are individual and can have individual names.</li>
+    </ul>
+  </li>
+</ul>
+// CONCEPT END //
+// LESSON //
+Lesson 3.3c: Use Classes- Profanity Editor
+// CONCEPT //
+Using website output
+<p>
+  Since being used very frequently, the command <span class="code">open()</span> is not stored in the <span class="code">os</span> module but available as part of the Python Standard Library. It's a class that enables me to open files and read their contents. Likewise there is a method to open and read outputs from webpages using functions from the <span class="code">urllib.request</span> module. It turned out to be a bit harder than in the course example because the profanity webpage would not recognize the user agent that Python provides. I found a way to make it work online by changing the user agent with an instance of the <span class="code">FancyURLopener</span> class. Eventually I managed to use the returned webpage output to determine if my text contained any profane words.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 3.4a: Make Classes- Movie Website
+// CONCEPT //
+Terminology and best practices
+<p>
+  It is possible to make user created classes and it's good practice to keep such homemade classes in a separate file (equivalent to a module) although they can be incorporated in the main code. Saving classes to a separate file adheres to the way Python's built-in classes are stored and probably also makes them easier to share with others.
+</p>
+<p>
+  Great keywords so far:
+</p>
+<table>
+  <tr>
+    <td style="width:150px">Library:</td>
+    <td style="width:550px">
+      Python has a Standard Library with an extensive amount of components ready to use with any standard Python installation. The library consist of modules for various purposes necessary to interact with file systems and performing standardized Python tasks. Additional library components may be included with various Python distributions or release versions or they can simply be imported separately if needed (e.g. from the Python Package Index repository).
+    </td>
+  </tr>
+  <tr>
+    <td>Module:</td>
+    <td>
+      A file containing Python definitions and statements that may be imported into other programs. An example module is turtle.py. Keeping definitions in separate modules can make code maintenance easier.
+    </td>
+  </tr>
+  <tr>
+    <td>Class:</td>
+    <td>A blueprint code that can be cloned as multiple instance of itself, e.g. <span class="code">Turtle()</span> or <span class="code">Movie()</span>.</td>
+  </tr>
+  <tr>
+    <td>Method:</td>
+    <td>
+      A function (or definition) that is part of a Class and thus will be executed as an Instance Method when initiated. Methods always take their first parameters/arguments of 'self', example:
+<pre>
+class MyHelloClass:
+def method(self):
+return 'hello world'
+</pre>
+  </td>
+  </tr>
+  <tr>
+    <td>Instance/object:</td>
+    <td>An object or clone created from a class, e.g. <span class="code">shelly = turtle.Turtle()</span></td>
+  </tr>
+  <tr>
+    <td>Constructor:</td>
+    <td>An instance method that creates space for and initiates an instance of a class, typically a piece of code resembling a function: <span class="code">def __init__(self,args*):</span></td>
+  </tr>
+  <tr>
+    <td>Self:</td>
+    <td>Placeholder that points to the name of the class instance, e.g. 'shelly'. Although not a reserved Python keyword, it's best practice to use self in classes.</td>
+  </tr>
+  <tr>
+    <td>Instance Variable:</td>
+    <td>The unique variables that are kept within each instance of a class. This is among the things that the constructor creates space for.</td>
+  </tr>
+  <tr>
+    <td>Instance Method:</td>
+    <td>Any function within a class (or instance thereof) that has its first argument as self.</td>
+  </tr>
+</table>
+// CONCEPT END //
+// LESSON //
+Lesson 3.4b: Make Classes- Advanced Topics
+// CONCEPT //
+Object Oriented Programming
+<p>
+  An advanced idea in <em>object oriented programming (OOP)</em> is a thing like class variables – the special variables that are associated with all class instances. Each instance variable can be set to something different with each instance.
+</p>
+<p>
+  Another type of variable is the <em>class variable</em> which is a permanent or pre-set variable within the class. The programmer can include class variables by defining the variable in the root of the class, i.e. not inside any of the class methods. One pre-defined class variable is called <span class="code">__doc__</span> and it holds documentation for the class. It can be called from the class or any instance of it: <span class="code">print(turtle.Turtle.__doc__)</span> or <span class="code">print(turtle.shelly.__doc__)</span>. This variable is set in the class in a slightly different way than when defining the class/instance methods: It is set to the triple-quote string in the root of the class (has to be the first line inside the class – unless the first lines are comments).
+</p>
+<p>
+  Two other pre-defined class variables are <span class="code">__name__</span> and <span class="code">__module__</span>. The first one contains the name of the class that holds this variable. The latter contains the name of the module where the class is stored.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Inheritance - a fish analogy
+<p>
+  The next big idea in OOP is <em>inheritance</em>. The analogy to inheritance in life is when a parent organism (class) passes down certain traits (attributes, instance variables, methods) to it's child (instance/object). This strategy is employed in code by calling a class with another class. This enables me to carry over and re-use code for instance variables and class methods which were already defined in the called class. This is inheritance from a class to a sub class. It's even allowable to add a method in the sub class of same name as within the class, but it will perform <em>Method Overriding</em> when called by the instance of that sub class.
+</p>
+<p>
+  The fish analogy illustrating OOP and inheritance:
+</p>
+<ul>
+  <li>What is the difference between a Fish and a Salmon?
+    <ul>
+       <li>a Salmon is a particular type of Fish so it's actually different from all other Fish</li>
+    </ul>
+  </li>
+  <li>A Salmon is named Mary. What is the difference between Mary and a Salmon?
+    <ul>
+      <li>Mary is a specific "instance" of a Salmon created from some other Salmon and now represent a real thing that has Salmon-like attributes</li>
+    </ul>
+  </li>
+  <li>Fish is a class (not a real thing), and Salmon is a class (a Fish class with more specific attributes), and Mary is an object (a real fish that is a kind of Salmon that is a kind of Fish)</li>
+</ul>
+// CONCEPT END //
+// CONCEPT //
+Refactoring code
+<p>
+  With this new knowledge in the bag, I am (theoretically :-) able to refactor my existing html generator code into an OOP version that relies more on a skeleton of classes and objects. A great benefit from refactoring my code into an OOP based approach whenever possible, is that it makes the code more logical for other OOP minded programmers and easier to use with their own code. It makes code easier to share (and steal) and use as independent packages along with other code.
+</p>
+// CONCEPT END //
+// CONCEPT //
+The value of OOP vs procedural method
+<!-- Sources: http://math.hws.edu/javanotes/c1/s5.html and
+http://searchsoa.techtarget.com/definition/object-oriented-programming -->
+<p>
+  The "procedural" way of programming works well in certain projects. It may be the fastest and shortest way in terms of lines of code to solve a problem if it is of minor scale and if it is not required to work much with other external pieces of code. However, when resolving bigger problems and creating projects that require scalable functionality or interchangeability, the procedural method becomes too inflexible or unmanageable.
+</p>
+<p>
+  The OOP method in contrast provides modular code components and a blueprint or "factory" for mass producing objects each with their individual data sets and routines. This approach is good for large scale projects because it enables us to pick modular code snippets with a certain functionality and bring them into our code to solve certain parts of it. Our overall large-scale project can be broken into smaller bits that in turn gets replaced by these modular snippets, the classes, without having to know the exact inner workings of them. This enables the programmer to focus on building a backbone of objects and how they relate in his/her program instead of the logic behind them. We can label our objects with meaningful names in the context of the program and the OOP method thereby in several ways resembles how many things in real life work and therefore may be a helpful way to arrange code for better understanding by our human brains.
+</p>
+<p>
+  The fact that we can take other people's code in the form of classes and incorporate them into own code saves time because we don't have to invent, write and bug test the same code again if somebody already produced a class of good quality to perform some specific operations. The reusable nature of classes saves us from repetitive code. In addition, we can build new classes upon other classes and make the subclass inherit properties of the parent class and we can even grant new abilities to the subclasses. The class concept furthermore enables creation of new data type that is not already defined in the language itself.
+</p>
+<p>
+  These values of OOP are very powerful for creating structure in the code, reduce complexity, increase reusability of code thereby minimizing repetition and allowing for easy sharing and adaptation of software components amongst other programs of object-oriented nature.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Abstract thinking in OOP and relation to HTML and CSS
+<!-- Sources: http://whatis.techtarget.com/definition/abstraction and
+http://en.wikipedia.org/wiki/Abstraction_%28computer_science%29 -->
+<p>
+  The idea of abstraction in OOP is that the underlying operations of objects are not necessarily known to the user. Of importance is to know the interface to the object – to know how to "communicate" with the object and what type of data it is able to produce or return. The object must advertise the type of data it can store and the available operations it can apply to manipulate the data. The rest can stay hidden to help reduce complexity. A real world analogy could be a radio, which can be manipulated with various buttons to produce sound at a certain volume etc. We don't have to know exactly how the radio produces this output, e.g. whether by use of transistors or vacuum tubes. This enables us to focus on resolving the problem at a higher level where we can regard objects as plug-ins or modular elements that can be grabbed and thrown into the program to fulfill certain parts of it. The internal workings of the class/object can later be optimized or changed without compromising how it interacts with the program that uses its operations as long as it still adheres to the agreed interface.
+</p>
+<p>
+  With html there is also a level of abstraction to the functionality that displays things on screen via the browser and e.g. how style sheets (css) are applied to the html code. It is adequate to know the basic functionality and rules of building the style sheet to be able to apply its effects inside one's own html. The html block attribute named "class" enables the user to point to and apply styles from a style sheet to block elements in the displayed webpage. Exactly how this works is not important to know. The important thing is to let the programmer focus on the high-level language instructions and structure that enables building of the desired page. Another similarity with html to OOP is the ability to call external files, hereunder scripts, css or other html files. This is almost like working with modules in Python as it likewise reduces repetition, enables the sharing of functionality and streamlines operations in larger projects.
+</p>
+// CONCEPT END //
+// LESSON //
+Bonus take-aways from Stage 3 lessons
+// CONCEPT //
+Bonus learning 1
+<p>
+  My Stage 2 reviewer had plenty of comments to the structure and adherence to styleguide. Going back and reading the Udacity styleguide at this stage greatly heightened my understanding and sense of structure in the html and css.
+</p>
+// CONCEPT END //

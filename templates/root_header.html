@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is an extended Jinja template containing header functionality for
+selecting root page choices via navigation bar #}
+
+{% block header %}
+<div class="navheader" id="top">
+	<h2 class="addmargin">Udacity Introduction to Programming Nanodegree | Jes 2015</h2>
+	<ul class="navbar">
+		<li class="navbar"><a class="navbar" href="/notes?page=stage1">Notes</a></li>
+		<li class="navbar"><a class="navbar" href="/fizzbuzz?page=fizzbuzz">FizzBuzz</a></li>
+		<li class="navbar"><a class="navbar" href="http://hmpg.net/">Quit</a></li>
+	 </ul>
+</div>
+{% endblock %}

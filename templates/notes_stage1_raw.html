@@ -1,0 +1,148 @@
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is a raw note file for use with Python and Jinja templates  #}
+// LESSON //
+Lesson 1.1: The Basics of the Web and HTML
+// CONCEPT //
+Webpages
+<p>
+  Internet pages are basically made from text documents written to follow a certain structured language called HTML - HyperText Markup Language.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Coding
+<p>
+  Coding is another expression for programming. It means telling computers what to do in a language they understand, e.g. through HTML, Python, assembler or some other structured language that computers know how to interpret and execute.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Computers are stupid
+<p>
+  Coding in a language with strict rules implies that the interpreting computer is prone to misunderstand when the human programmer make mistakes. No current computers posses a "human factor" that can understand and correct human mistakes, so the computers tend to act stupid when encountering an error and they have to break the code to avoid unintended things from happening.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Look it up
+<p>
+  When starting to code there will be a vast world of details that it's easy to get lost in. Part scope of this course is also to open up many doors to worlds full of information. That's no problem, though, because it's part of the idea and instead of getting lost, I should focus on the larger ideas and look up the details (which HTML tag or Python command etc. to use) on the internet as I need them.
+</p>
+// CONCEPT END //
+// CONCEPT //
+HTML lingo
+<p>
+  HTML language follows a pretty strict syntax and there are many concepts to learn to be able to write funtional HTML as well as being able to read the guidelines for the language. There are tags (and some require closing brackets, but others don't), inline tags, block tags, void tags, elements, attributes, values and probably a lot more stuff to keep track of.
+</p>
+// CONCEPT END //
+// CONCEPT //
+HTML structure
+<p>
+  All HTML documents that are meant to display web content and be compatible with common browsers have to follow a set syntax. All such HTML documents share a tree-like backbone made up of tags for doctype, html, head, meta-data, (<a target="_blank" href="http://www.w3.org/Style/CSS/">css</a>, <a target="_blank" href="http://www.w3schools.com/js/">javascript</a>) and body (where the main contents of the page goes). It looks like this in a nutshell:
+</p>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Web page title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+// CONCEPT END //
+// CONCEPT //
+Images, inline vs block
+<p>
+  There are special tags for showing images denoted with a void tag: <span class="code">&lt;img src='smiley.jpg' alt='Smiley face'&gt;</span>. A void tag means there is no closing tag (e.g. <span class="code">&lt;/img&gt;</span> for these tag types. It's confusing but that's just one of those things. Image elements in img tags appear <img src="/static/inliners.jpg" alt="Inliners. A-ha. A-hahaha :-|" class="thumbnail"> inline as opposed to block elements that take up a complete row on the page by themselves (e.g. the <span class="code">&lt;div&gt;</span> element).
+</p>
+<p>
+  Examples of Block Elements: <span class="code">&lt;p&gt;</span>, <span class="code">&lt;div&gt;</span>, <span class="code">&lt;form&gt;</span>, <span class="code">&lt;header&gt;</span>, <span class="code">&lt;nav&gt;</span>, <span class="code">&lt;ul&gt;</span>, <span class="code">&lt;li&gt;</span>, and <span class="code">&lt;h1&gt;</span>.
+</p>
+<p>
+  Examples of Inline Elements: <span class="code">&lt;a&gt;</span>, <span class="code">&lt;span&gt;</span>, <span class="code">&lt;b&gt;</span>, <span class="code">&lt;em&gt;</span>, <span class="code">&lt;i&gt;</span>, <span class="code">&lt;cite&gt;</span>, <span class="code">&lt;mark&gt;</span>, and <span class="code">&lt;code&gt;</span>.
+</p>
+
+// CONCEPT END //
+// LESSON //
+Lesson 1.2: Creating a Structured Document
+// CONCEPT //
+Structure, structure, structure
+<p>
+  HTML is the language that provides the backbone  of the webpage's content in a branched order - the so-called DOM or Document Object Model. This clever approach makes it highly adaptable in a controlled way by applying formatting to the backbone elements separately - namely via CSS. It enables me to apply a complete "style make-over" to collective parts of a webpage with minimum effort and time use.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Styling
+<p>
+  On such a "style make-over" the outputted webpage looks different in the browser. The HTML (structure) remains unchanged while the CSS (style) changes and thus controls how the elements of the page appear on screen.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Boxification
+<p>
+  It appears that all elements in HTML is contained in rectangular boxes - their dimensions and other parameters may be defined via separate styles. This is another clever part of HTML as it enables easy page adaptation to various screen sizes, browsers and digital platforms in general.<br>
+  Boxes are created in HTML with block element generating tags like the <span class="code">&lt;div&gt;</span>-tag (but not around the <span class="code">&lt;span&gt;</span>-tag). Creating a box inside another box can be done by enclosing one <span class="code">&lt;div&gt;</span>-tag inside another. Clever! So when I break down a webpage as it looks in the browser and "read" the invisible "boxes", I can actually mimic those boxes' layout into my own HTML by building a hierarchy of <span class="code">&lt;div&gt;</span>-tags.
+</p>
+<p>
+  The css styling enables me to manipulate how my boxes and their contents will appear on screen. I may want to show the borders of the boxes or I can choose not to and keep them invisible. I may want to add somespace around my content inside my box or maybe add space around my boxes so they appear further from each other. This is all controlled with css styling and in schematically looks like this:
+</p>
+<img src="/static/margin-border-padding.gif" alt"css styling of elements" style="height: 250px">
+// CONCEPT END //
+// LESSON //
+Lesson 1.3: Adding CSS Style and HTML Structure
+// CONCEPT //
+The missing link
+<p>
+  Styling by CSS is linked to HTML elements by labeling the HTML elements (tags) with <span class="code">class</span> and <span class="code">id</span> attributes. This seems to be the stuff that makes the magic happen.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Cascading and inheritance
+<p>
+  HTML structure is DOM, and CSS is applied cascading throughout the DOM in turn dictating the order of the applied styling.  The CSS for my HTML page can be "called" or referenced into my HTML from a separately saved CSS file. It can also be written directly into the beginning of my HTML. I guess the latter is great for smaller projects while the former seems very useful for big projects with tons of HTML files all calling the same external CSS file.
+</p>
+<p>
+  CSS applied to an element is inherited to the descendants of that element, but there are differences in how e.g. text- and box-properties are inherited. This seems awesome and it all gets more logical and useful at this stage. There's just the thing about remembering all of this...
+</p>
+// CONCEPT END //
+// CONCEPT //
+Repetition
+<p>
+  Programming seems a lot about avoiding unnecessary repetition. CSS together with the inherent structures of HTML and CSS are very efficient at that. E.g. make one CSS file and call this from a bunch of HTML files to easy apply a uniform layout to all pages in no time. The rules of inheritance in CSS also helps programmers write less code because they can simply apply style to a higher-level or ancestor-level element.
+</p>
+// CONCEPT END //
+// LESSON //
+Bonus take-aways from Stage 1 lessons
+// CONCEPT //
+Bonus learning 1
+<p>
+  I learned how to make use of the browser's Developer Tool (source HTML+CSS) to "read" (mouse-over) HTML elements and see their respective boxes in real-time on screen. That was an eye-opener!
+</p>
+// CONCEPT END //
+// CONCEPT //
+Bonus learning 2
+<p>
+  The concept of keeping content and style separate seems to me somewhat similar to having unformatted text in MS Word with separate formatting applied in separate "Styles" templates, which likewise enables swift changing of a full Word document between various lay-outs (incl. colors schemes, line spacing, font, font size etc.).
+</p>
+// CONCEPT END //
+// CONCEPT //
+Bonus learning 3
+<p>
+  I learned how to set-up Sublime Text. I now have my own humble developer environment. Success!
+</p>
+<p>
+  <span class="code">\(^_^)/</span> It was easy to make it recognize and color code HTML syntax but it took me a while to make it view my code in a browser with a click (Sublime Text 3 on Windows 8).
+</p>
+// CONCEPT END //
+// CONCEPT //
+Bonus learning 4
+<p>
+  There were links to very resourceful webpages I surely will be going back to often for help. <a target="_blank" href="http://stackoverflow.com/">Stackoverflow</a>, <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web">MDN CSS and HTML reference</a>, <a target="_blank" href="https://css-tricks.com/how-css-selectors-work/">CSS-tricks</a>, <a target="_blank" href="http://validator.w3.org/#validate_by_input">W3C HTML Validation</a>.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Say what?
+<p>
+  One of the earlier lessons made me fiddle with styles of some HTML- and CSS-generated circles. I don't understand what makes the circles circular, but hopefully that'll come...
+</p>
+// CONCEPT END //

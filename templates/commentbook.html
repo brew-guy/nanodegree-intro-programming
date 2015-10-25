@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is the extended Jinja template containing header functionality for
+selecting stage notes via navigation bar, a headline and functionality for
+commenting page #}
+
+{% block styles %}
+	<link rel="stylesheet" href="/static/notes_style.css">
+	<link rel="stylesheet" href="/static/comments_style.css">
+{% endblock %}
+
+{% block header %}
+<div class="navheader" id="top">
+	<h2 class="addmargin">Udacity Introduction to Programming Nanodegree | Jes 2015</h2>
+	<ul class="navbar">
+		<li class="navbar"><a class="navbar" href="/">Home</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage1">Stage 1</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage2">Stage 2</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage3">Stage 3</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage4">Stage 4</a></li>
+		<li class="navbar"><a class="navbar" href="/notes?page=stage5">Stage 5</a></li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block headline %}
+<div class="coolheading">
+	Comments
+</div>
+{% endblock %}
+
+{% block wallbook %}
+<br>
+<div class="form-style-2">
+	<div class="form-style-2-heading">Thanks for providing feedback to my Udacity IPND notes</div>
+	<form action="/sign?{{ params }}" method="post">
+		<label for="user"><span>Your name <span class="attention">*</span></span>
+			<input type="text" class="input-field" name="user" value="Anonymous" />
+		</label>
+		<label for="wall_lesson"><span>Lesson</span>
+			<select name="wall_lesson" class="select-field">
+				<option>{{ lesson }}</option>
+			</select>
+		</label>
+		<label for="comment"><span>Comment <span class="attention">*</span></span>
+			<textarea name="comment" class="textarea-field"></textarea>
+		</label>
+		{% if error_message != '' %}
+		<label for="error"><span><span class="attention">Warnings:</span></span>
+			<textarea name="error" class="message-field attention" readonly>{{ error_message }}</textarea>
+		</label>
+		{% endif %}
+		<label>
+			<span>&nbsp;</span><input type="submit" value="Submit" />
+		</label>
+	</form>
+</div>
+<!-- user comments from GAE Datastore gets inserted down here -->
+{{ posts | safe }}
+{% endblock%}

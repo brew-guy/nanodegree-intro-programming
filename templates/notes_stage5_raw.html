@@ -1,0 +1,263 @@
+{# This file contains the submission material for the Udacity Nanodegree
+Introduction to Programming by Jes H.
+This is a raw note file for use with Python and Jinja templates  #}
+// LESSON //
+Lesson 5.1: Meet JavaScript
+// CONCEPT //
+JavaScript
+<p>
+  JavaScript (JS) is a programming language with its own syntax which adds more ways to create interactive web content. Like css, it may be added to the webpage in several ways:
+</p>
+<ol>
+  <li>Write JS directly into the html file inside a set of <span class="code">&lt;script&gt; &lt;/script&gt;</span> tags</li>
+  <li>Keep JS in a separate .js file</li>
+</ol>
+<p>
+  The second option is preferable as it keeps this this language code separate from our other languages such as html and css. Keeping all languages separate preserves better overview, correct syntax highlighting and eases debugging.
+</p>
+// CONCEPT END //
+// CONCEPT //
+JavaScript variables
+<p>
+  Variables are declared a little differently in JS. They have to be prefixed by the keyword <span class="code">var</span>:<br>
+  <span class="code">var firstName = "Shelly";<br>
+  var age = 32;</span>
+</p>
+<p>
+  Apart from that, it works much the same way as Python; it takes just an equal sign to declare the value to the variable name. Strings are enclosed in quotes while numbers are not and there's no special requirement for differing between integers and floating point values. Other data types like arrays, functions and objects use the same <span class="code">var</span> syntax.
+</p>
+// CONCEPT END //
+// CONCEPT //
+JavaScript debugging tip
+<p>
+  JS can output to the browser's console (found in the browser Web Developer/Inspector tools). This is very useful to check for expected code behavior, see contents of variables as the code executes and in general for debugging JS code. This is very much similar to the trick where we used the Google App Engine (GAE) log to catch Python code output for debugging purposes.
+</p>
+// CONCEPT END //
+// CONCEPT //
+JavaScript Object Notation (datastructure)
+<p>
+  JSON is a data interchange format that can convey some universal data structures between computers. It's also pretty straightforward for humans to read and write. The JSON data structures are called: object, array, value, string and number.
+</p>
+<p>
+  There is nothing new in terms of those structures when comparing to what has been learned during this course already and comparing to Python brings back resemblance for the structures, e.g.:
+</p>
+<ul>
+  <li>JSON array ~ this resembles a Python list (an ordered collection of values)</li>
+  <li>JSON object ~ this resembles a Python dictionary or object (an unordered set of name/value pairs)</li>
+</ul>
+// CONCEPT END //
+// LESSON //
+Lesson 5.2: The power of APIs
+// CONCEPT //
+XML (datastructure)
+<p>
+  eXtensible Markup Language or XML is another data interchange format and different from JSON. It is structured to resemble the HTML DOM more and follow W3C and several other related specifications all of which are free open standards. XML does not allow void tags, i.e. all tags must close with a closing tag unlike current HTML formats.
+</p>
+<p>
+  An API or Application Programming Interface – is a direct and standardized interface used to communicate with servers. Instead of harvesting results from a webpage's display and getting hard to interpret html back, the API returns a much more useful data format - e.g. in the xml or JSON format.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Mini-DOM
+<p>
+  This can be imported in Python from the library dom: <span class="code">from xml.dom import minidom</span>. Strings of xml can be parsed to a DOM structure using <span class="code">p = minidom.parseString(xmlstring)</span>. The minidom stored in this p object can hereafter be manipulated further and represented via other functions in the object. A <span class="code">print dir(p)</span> will reveal how many object methods are available within the mini-DOM. Examples are some look-up functions: <span class="code">getElementsById</span>, <span class="code">getElementsByTagName</span>, <span class="code">getElementsByTagNameNS</span>. Useful also are <span class="code">parentNode</span>, <span class="code">childNodes</span>, <span class="code">nodeValue</span> and <span class="code">toprettyxml</span>.
+// CONCEPT END //
+// CONCEPT //
+JSON
+<p>
+  Like minidom, json (the JavaScript Object Notation) can also be imported into python: <span class="code">import json</span> to hold data strings of structures adhering to this particular notation. Any string holding a json data structure can now be loaded into a python variable: <span class="code">p = json.loads(string)</span> and from there be manipulated as any other typical Python data structure list or dictionary data.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Internet citizenship
+<p>
+  Being a good internet citizen:
+</p>
+<ul>
+  <li>Use a good user-agent – specify it with urllib</li>
+  <li>Rate-limit yourself – limit the speed with which you send requests to servers, e.g. by adding a pause with the sleep function from the time library</li>
+  <li>Use common protocols and data formats – use xml or json instead of inventing your own, enables others to easily communicate with and build on your creations</li>
+</ul>
+// CONCEPT END //
+// CONCEPT //
+Common APIs/internet communication protocols
+<p>
+  SOAP – Microsoft<br>
+  Protocol buffers – Google<br>
+  Thrift – Facebook<br>
+  XML – W3C (WWW Consortium)<br>
+  JSON - Douglas Crockford<br>
+</p>
+// CONCEPT END //
+// CONCEPT //
+ASCII Chan
+<p>
+  This exercise uses the API of hostip.com to obtain GPS longitude and latitude coordinates for any given ip address. These coordinates are then coupled with Google Maps Image APIs for Static Maps to draw a map where we can place markers of the ips we look up on hostip.com. It was a useful insight into talking with APIs.
+</p>
+<p>
+  Hostip.com has a clear guidance for using their API on their web page. You simply send a GET to a special address including the ip to look up and it returns a response in either JSON, XML or HTML. An example of a GET could be:
+<br>
+ <span class="code">http://api.hostip.info/get_json.php?ip=12.215.42.19&amp;position=true</span>
+<br>
+  which would spit out the response in JSON format:
+<br>
+  <span class="code">{"country_name":"UNITED STATES","country_code":"US","city":"Aurora, TX","ip":"12.215.42.19","lat":"33.0582","lng":"-97.5159"}</span>
+</p>
+<p>
+  Knowing the syntax of JSON it is now an easy piece to load up this data structure module in your preferred programming language (say Python) and pluck out the desired GPS coordinates from the response.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 5.3: Recursion and Parallel Computing
+// CONCEPT //
+Recursion
+<p>
+  Recursion is a circular process where an initial element is processed and included into the product of this process. For a recursive process to be able to end, it needs to have a rule for stopping again. So recursion requires at least 2 rules, one for recursion (recursive case) and one termination/ending rule (base case).
+</p>
+<p>
+  Programatically, this is can be implemented by writing a function that calls itself with a slight variation (recursive case) but also checks for a terminating condition (end case), e.g.:
+</p>
+<pre>
+  def factorial(n):
+    # Base case, f(0)=1
+    if n == 0:
+      return 1
+    else:
+      # Recursive case
+      return n * factorial(n - 1)
+
+  def is_palindrome(s):
+    # Base case, if empty string is left, it indicates palindrome found
+    if s == '':
+      return True
+    elif s[0] == s[-1]:
+      # Recursive case, if first and last character match, call again
+      return is_palindrome(s[1:-1])
+    else:
+      return False
+</pre>
+// CONCEPT END //
+// CONCEPT //
+Parallel computing
+<p>
+  Larger amounts of data sets are broken into lesser chunks of data sets and processed in parallel. The data has to be of a structure so that it can be chopped into smaller sets and still maintain a regular structure (e.g. sales numbers from vendors in various regions).
+</p>
+<p>
+  When split up, the processing is done by programs doing the exact same thing in parallel to each of its own data part. When all the programs running in parallel have processed their data, the outputs are passed to a second function or functions. This second processing compiles the inputs after certain rules (e.g. adds intermediate sums for same regions).
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 5.4: Solving Big Problems
+// CONCEPT //
+<p>
+  The course followed a session with senior expert programmer Peter Norvig solving a problem with a LOT of interdependent parts. This lesson is more about the process than the code and it thereby underlines what we learned in previous stages of this course.
+</p>
+<p>
+  Peter Norvig is trying to write a program that handles playing a Scrabble / Words with Friends-like word board game and he starts out by breaking the problem down into all the parts he imagines goes into defining the game.
+</p>
+<p>
+  When that's done, he moves on to imagine how each of the parts can be defined, i.e. by what data type and if some parts require a function to pass inputs and produce desired outputs. Seeing that he can define all parts of the problem, he is confident that he can solve the full big problem by solving many little steps one at a time. When all is outlined in very large and high level strokes, pacing is important. Intermediate goals along the way are important or it can get too overwhelming trying to solve the problem in full scale.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 5.5: Making Pages Look Good
+// CONCEPT //
+Device emulation for responsive web design
+<p>
+  The goal of responsive web design is to make a page look good no matter which device it's rendered on. Fortunately, most devices can be easily emulated at no cost at all. The Chrome bowser has a lot of built in emulations readily available in the developer tools – opens on pressing Ctrl-Shift-j (for Windows). This is very useful when testing how the website adapts on the various resolution formats that come with the multitude of devices available in the market.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Dash project 1 - style techniques
+<p>
+  A quick nice page can be displayed and made flexible on various display formats with some simple tricks like centering everything and adding an auto-resizing background. This can be set in css:
+<pre>
+  body {
+      text-align: center;
+      background: url("http://www.whereever.com/somepic.png");
+      background-size: cover;
+      background-position: center;
+  }
+</pre>
+<p>
+  A limited amount of elements on the page and a nice big readable font also go a long way.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Dash project 2 - media queries, scripting
+<p>
+  Another trick is to wrap all text blocks into a block tag set like the <span class="code">&lt;article&gt;&lt;/article&gt;</span> tags and set the css property for that tag to <span class="code">margin: 0 auto;</span> which sets top+bottom margins to 0 but ensures left+right margins are auto-adjusted effectlively keeping all article text blocks to the center of the display. Using the <span class="code">max-width</span> property also ensures display adapts to less-than browser widths:
+</p>
+<pre>
+  article {
+      max-width: 500px;
+      padding: 20px;
+      margin: 0 auto;
+  }
+</pre>
+<p>
+  It's possible to test for conditions and activate alternative css if the recommended settings encoded in the css styling is compromised, e.g. by browser resizing or viewing on incompatible devices. In this example, css is asking the media if display width drops below 500 pixels. In that case, the css of the body is changed to a red background (maybe serving as a warning to the user):
+</p>
+<pre>
+  @media (max-width: 500px) {
+      body {
+          background: red;
+      }
+  }
+</pre>
+<p>
+  Obvious alternatives in the above would be to implement css that adapts for all elements as the display width narrows, e.g. smaller h1 font size, less padding, smaller border, inlined list items changed to display as block etc.
+</p>
+// CONCEPT END //
+// CONCEPT //
+Dash project 3 – gradients, mores scripts, more fonts, more, more, more
+<p>
+  Setting max-width property of block elements to 600 pixels is currently a good mobile proof setting since many phones have 600+ pixels width in landscape mode and most tablets likewise regardless of orientation.
+</p>
+<p>
+  There are cool new features on the way in CSS3 but for now they have to be called specifically with a "vendor-prefix" like the gradient feature here that only some browsers are currently able to produce:
+</p>
+<pre>
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+</pre>
+<p>
+  When using on the edge features or not globally implemented features one should always set the current best alternative on a line before so that will execute for older or non-compatibel browsers. For the above example with gradient, one would simply add a a line before setting background to a uniform color that all browsers can interpret.
+</p>
+// CONCEPT END //
+// LESSON //
+Lesson 5.6: Go Explore
+// CONCEPT //
+Options
+<p>
+  I chose to implement bits from course options 1 and 2. Nothing fancy so I added:
+</p>
+<ul>
+  <li>css updated to make page center on screen and be more responsive to narrow display sizes</li>
+  <li>Google fonts</li>
+  <li>JavaScript to shake a lesson block upon mouse-click</li>
+</ul>
+<p>
+  Remaining problems: After setting text in lesson blocks to justify, all smaller tables centers in the blocks. I cannot make them float or align left without wrapping text around them and messing up the lay-out.
+</p>
+// CONCEPT END //
+// CONCEPT //
+To-do / other things I thought about trying
+<ul>
+  <li>I saw other IPND students implement user selection from different style sheets. That would have been an awesome project for my notes pages but I decided to try that in another project.</li>
+  <li>I wanted to try Google Material Design as styling or as part of the above style selection option, but I ended up liking what I created myself.</li>
+  <li>I also wanted to have made one more menu option on the home/welcome screen navigation bar where I have an API interact with something outside my web page - e.g. pulling in some data or stuff to display in my site.</li>
+  <li>It would also have been a great learning experience to add more columns to the lay-out, but it seemed like quite a big thing and I decided this should be a separate project to implement from the beginning of my next design.</li>
+</ul>
+// CONCEPT END //
+// LESSON //
+¯\_(ツ)_/¯
+// CONCEPT //
+Thank you
+<p>
+  Thank you for reading my Udacity IPND notes blog.
+</p>
+<p style="color: rgb(255,99,71); font-size: 115px; text-shadow: 4px 4px rgb(50,50,50); font-family: 'Codystar', cursive;">
+  Jes H
+</p>
+// CONCEPT END //

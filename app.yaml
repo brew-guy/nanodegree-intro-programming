@@ -1,5 +1,5 @@
-application: udacity-notes-on-gae
-version: 2
+application: udacity-notes-on-gae-final
+version: 1
 runtime: python27
 api_version: 1
 threadsafe: true

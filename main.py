@@ -21,6 +21,9 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+# Required to enable parsing and manipulation of xml DOM
+from xml.dom import minidom
+
 # Jinja and Google App Engine libraries and environment variables
 import os
 import webapp2
@@ -86,6 +89,44 @@ class FizzBuzzHandler(Handler):
 		self.render('fizzbuzz.html',
 								page = page_selector,
 								buzz = buzz_input)
+
+class APIHandler(Handler):
+	'''Handler for showing the CodePen.io API interaction page'''
+	def get(self):
+		page_selector = self.request.get('page')
+		current_pens = codepen("http://codepen.io/popular/feed/")
+		self.render('codepen.html',
+		            page = page_selector,
+		            codepens = current_pens)
+
+# -------------- CODEPEN API FUNCTION TO PROCESS RSS FEED --------------
+
+class penClass():
+  '''basic placeholder class for extracted data from codepen rss feeds'''
+
+def codepen(rss_url):
+  '''Process Codepen.io rss feed and return list of objects with
+  pen_title, pen_url, pen_hash, user_name, user_url, pen_creator properties'''
+  # Read the RSS URL with urllib and parse the xml result through minidom
+  # for easier manipulation and readability of the file structure
+  result = urllib.urlopen(rss_url).read()
+  dom_result = minidom.parseString(result)
+
+  # Walk through the DOM structure and retrieve all elements tagged with "item"
+  # These are the elements containing codepen details
+  channels = dom_result.getElementsByTagName('channel')[0]
+  items = channels.getElementsByTagName('item')
+  codepens = [penClass() for i in range(len(items))]
+  for index, pen in enumerate(codepens):
+    pen.pen_title = items[index].getElementsByTagName('title')[0].firstChild.data
+    pen.pen_url = items[index].getElementsByTagName('link')[0].firstChild.data
+    url_split = pen.pen_url.split("/")
+    pen.pen_hash = url_split[-1]
+    pen.user_name = url_split[3]
+    pen.user_url = 'http://codepen.io/' + pen.user_name
+    pen.pen_creator = items[index].getElementsByTagName('dc:creator')[0].firstChild.data
+  return codepens
+
 
 # ----------------- VALIDATION HELPERS FOR USER INPUTS -----------------
 
@@ -225,6 +266,7 @@ class PostWall(webapp2.RequestHandler):
 # a certain path structure (e.g. '/') and uses the matching class for response.
 app = webapp2.WSGIApplication([('/', MainPage),
 															 ('/notes', NotesHandler),
+															 ('/codepen', APIHandler),
 															 ('/fizzbuzz', FizzBuzzHandler),
 															 ('/comment', WallPage),
 															 ('/sign', PostWall),

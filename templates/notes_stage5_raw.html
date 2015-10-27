@@ -230,12 +230,13 @@ Lesson 5.6: Go Explore
 // CONCEPT //
 Options
 <p>
-  I chose to implement bits from course options 1 and 2. Nothing fancy so I added:
+  I chose to implement bits from course options 1 and 2:
 </p>
 <ul>
-  <li>css updated to make page center on screen and be more responsive to narrow display sizes</li>
+  <li>CSS updated to make page center on screen and be more responsive to narrow display sizes</li>
   <li>Google fonts</li>
-  <li>JavaScript to shake a lesson block upon mouse-click</li>
+  <li>JavaScript will shake lesson blocks on click. Give it a go! <span style="color: rgb(255,99,71);">Click, click click...</span></li>
+  <li>Implemented interaction with an API of Codepen.io: <a href="/codepen?page=codepen">Check it out...</a>
 </ul>
 <p>
   Remaining problems: After setting text in lesson blocks to justify, all smaller tables centers in the blocks. I cannot make them float or align left without wrapping text around them and messing up the lay-out.
@@ -246,8 +247,39 @@ To-do / other things I thought about trying
 <ul>
   <li>I saw other IPND students implement user selection from different style sheets. That would have been an awesome project for my notes pages but I decided to try that in another project.</li>
   <li>I wanted to try Google Material Design as styling or as part of the above style selection option, but I ended up liking what I created myself.</li>
-  <li>I also wanted to have made one more menu option on the home/welcome screen navigation bar where I have an API interact with something outside my web page - e.g. pulling in some data or stuff to display in my site.</li>
   <li>It would also have been a great learning experience to add more columns to the lay-out, but it seemed like quite a big thing and I decided this should be a separate project to implement from the beginning of my next design.</li>
+</ul>
+// CONCEPT END //
+// LESSON //
+What I learned in Stage 5
+// CONCEPT //
+Responsive lay-out, JavaScript and external fonts
+<p>
+  There was a LOT of doors opening up in this part of the course and I had to make some choices about which direction to move from here.
+</p>
+<p>
+  I went on reading more about responsive web layout. I wanted to give the overall appearance of the web site an overhaul with nice free online fonts from Google Fonts, a new repeating background pattern, adjusted CSS with stitch-like borders and opacity with rgba colors. I learned and implemented some nifty tricks for centering the page automatically and have large fonts and navigation bars adjust for smaller screen widths to look better on a wider range of devices. I found the Dash web site very fun and finished the last two projects to learn more about animations and JavaScript. I also trawled up and down Stackoverflow.com as usual to find help each time I had problems with JavaScript and css.
+</p>
+<p>
+  These were the sources I used for my further exploration:
+</p>
+<ul>
+  <li><a target="_blank" href="https://dash.generalassemb.ly/projects">General Assembly Dash Projects</a></li>
+  <li><a target="_blank" href="https://generalassemb.ly/education/learn-html-css-web-design-online">General Assembly HTML, CSS &amp; Web Design Circuit pages</a></li>
+  <li><a target="_blank" href="https://www.udacity.com/course/intro-to-html-and-css--ud304">Udacity course "Intro to HTML and CSS"</a></li>
+  <li><a target="_blank" href="https://www.google.com/fonts">Google Fonts</a></li>
+  <li><a target="_blank" href="http://stackoverflow.com/">stack overflow</a></li>
+</ul>
+// CONCEPT END //
+// CONCEPT //
+API interaction
+I looked over many APIs via the PublicAPIs web site before I finally went for implementing something not found on that site. I have really enjoyed the Codepen.io web site from very early on in this course and when I noticed they had documentation on their API, I wanted to explore how to bring some of that goodness into my project. For that purpose I had to write a new Python function that gets an xml response back from the Codepen API, then processes the xml and outputs a list of objects holding deatails of the currently most popular Codepens. This was a dauting task for me but I managed thanks to the strategies learned during this course and by studying the Codepen.io docs.
+<p>
+  These were the sources I used for my further exploration:
+</p>
+<ul>
+  <li><a target="_blank" href="http://blog.codepen.io/documentation/">Codepen (RSS Feeds and oEmbed) API Documentation</a></li>
+  <li><a target="_blank" href="https://www.publicapis.com/">PublicAPIs</a></li>
 </ul>
 // CONCEPT END //
 // LESSON //
